@@ -3,11 +3,11 @@ package com.epam.andrei_sterkhov.online_shop.dto;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ItemCategory {
+public class Category {
     private String name;
     private List<Item> itemList = new ArrayList<>();
 
-    public ItemCategory(String name) {
+    public Category(String name) {
         this.name = name;
     }
 

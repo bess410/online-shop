@@ -4,7 +4,7 @@ import com.epam.andrei_sterkhov.online_shop.dto.Item;
 
 public interface ItemRepository {
 
-    void createItem(Item item);
+    void createItem(Long itemId, Item item);
 
     void deleteItem(Long itemId);
 

@@ -1,6 +1,6 @@
 package com.epam.andrei_sterkhov.online_shop.controller;
 
-import com.epam.andrei_sterkhov.online_shop.dto.ItemCategory;
+import com.epam.andrei_sterkhov.online_shop.dto.Category;
 import com.epam.andrei_sterkhov.online_shop.generator.Generator;
 import com.epam.andrei_sterkhov.online_shop.service.SessionUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,7 @@ public class HomeController {
     private SessionUserService sessionUserService;
 
     private final Generator generator = new Generator();
-    private final List<ItemCategory> categories = generator.getCategories(3);
+    private final List<Category> categories = generator.generateCategories(3);
 
     @RequestMapping({"/", "/index"})
     private ModelAndView homePost(ModelAndView modelAndView) {
