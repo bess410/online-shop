@@ -29,7 +29,6 @@ public class AuthController {
 
     @PostMapping("registration")
     public ModelAndView registration(ModelAndView modelAndView, HttpServletRequest request, User user) {
-
         try {
             userService.createUser(user);
             sessionUserService.setCurrentSessionUser(user);
