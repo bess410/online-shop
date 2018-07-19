@@ -32,9 +32,9 @@
     <div class="container-fluid p-0 py-1 margin-top">
 
          <c:forEach var="category" items="${categories}">
-         <h1 class="text-center sticky-top category-header overflow-hidden bg-danger m-0">${category.name}</h1>
+         <h1 class="text-center sticky-top category-header overflow-hidden bg-danger m-0">${category.key}</h1>
          <div class="d-flex flex-wrap p-3 bg-info">
-             <c:forEach var="item" items="${category.itemList}">
+             <c:forEach var="item" items="${category.value.itemList}">
                 <div>
                     <div class="card m-2 w-12_5">
                         <img class="card-img-top" src="${item.imageUrl}" alt="item image">

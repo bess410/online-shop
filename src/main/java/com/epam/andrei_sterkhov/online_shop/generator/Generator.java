@@ -31,25 +31,19 @@ public class Generator {
             price = (random.nextInt(10) + 1) * 1000;
             name = names[random.nextInt(names.length)];
             item = new Item(name, price, "Description", "../images/maifun.jpg");
+            itemService.createItem(item.getId(), item);
             itemList.add(item);
         }
         return itemList;
     }
 
-    private Category generateCategory(String name, int size) {
-        Category category = new Category(name);
-        category.setItemList(generateItemList(size));
-        return category;
-    }
-
-    public List<Category> generateCategories(int size) {
-        List<Category> categories = new ArrayList<>();
+    public void generateCategories(int categoriesSize, int itemSize) {
         String[] namesCategory = {"Technics", "Food", "All for Garden", "Other things"};
         String name;
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < categoriesSize; i++) {
             name = namesCategory[random.nextInt(namesCategory.length)];
-            categories.add(generateCategory(name, random.nextInt(20)));
+            Category category = categoryService.createCategory(name);
+            category.setItemList(generateItemList(random.nextInt(itemSize) + 1));
         }
-        return categories;
     }
 }

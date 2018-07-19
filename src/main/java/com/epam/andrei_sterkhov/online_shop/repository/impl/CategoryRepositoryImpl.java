@@ -13,9 +13,10 @@ public class CategoryRepositoryImpl implements CategoryRepository {
 
 
     @Override
-    public void createCategory(String name) {
+    public Category createCategory(String name) {
         Category category = new Category(name);
         categories.put(name, category);
+        return category;
     }
 
     @Override
@@ -26,5 +27,10 @@ public class CategoryRepositoryImpl implements CategoryRepository {
     @Override
     public Category getCategoryByName(String name) {
         return categories.get(name);
+    }
+
+    @Override
+    public Map<String, Category> getAllCategories() {
+        return categories;
     }
 }
