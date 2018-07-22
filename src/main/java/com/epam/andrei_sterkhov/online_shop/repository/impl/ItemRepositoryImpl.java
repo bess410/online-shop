@@ -25,4 +25,9 @@ public class ItemRepositoryImpl implements ItemRepository {
     public void updateItem(Long itemId, Item item) {
         items.put(itemId, item);
     }
+
+    @Override
+    public Item getItemById(Long id) {
+        return items.get(id);
+    }
 }

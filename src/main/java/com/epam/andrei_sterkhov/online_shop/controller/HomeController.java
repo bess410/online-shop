@@ -9,7 +9,8 @@ import com.epam.andrei_sterkhov.online_shop.service.SessionUserService;
 import com.epam.andrei_sterkhov.online_shop.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.PostConstruct;
@@ -41,10 +42,22 @@ public class HomeController {
         userService.createUser(user);
     }
 
-    @RequestMapping({"/", "/index"})
-    private ModelAndView homePost(ModelAndView modelAndView) {
+    @GetMapping({"/", "/index"})
+    private ModelAndView home(ModelAndView modelAndView) {
+        User currentUser = sessionUserService.getCurrentSessionUser();
         modelAndView.addObject("categories", categoryService.getAllCategories());
-        modelAndView.addObject("currentUser", sessionUserService.getCurrentSessionUser());
+        modelAndView.addObject("currentUser", currentUser);
+        modelAndView.addObject("busket", currentUser.getBusket());
+        modelAndView.setViewName("index");
+        return modelAndView;
+    }
+
+    @PostMapping({"/", "/index"})
+    private ModelAndView homePost(ModelAndView modelAndView) {
+        User currentUser = sessionUserService.getCurrentSessionUser();
+        modelAndView.addObject("categories", categoryService.getAllCategories());
+        modelAndView.addObject("currentUser", currentUser);
+        modelAndView.addObject("busket", currentUser.getBusket());
         modelAndView.setViewName("index");
         return modelAndView;
     }

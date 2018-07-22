@@ -1,8 +1,10 @@
 package com.epam.andrei_sterkhov.online_shop.service.impl;
 
+import com.epam.andrei_sterkhov.online_shop.dto.Item;
 import com.epam.andrei_sterkhov.online_shop.dto.User;
 import com.epam.andrei_sterkhov.online_shop.exception.UserAlreadyExistException;
 import com.epam.andrei_sterkhov.online_shop.repository.UserRepository;
+import com.epam.andrei_sterkhov.online_shop.service.SessionUserService;
 import com.epam.andrei_sterkhov.online_shop.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,6 +14,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private SessionUserService sessionUserService;
 
     @Override
     public void createUser(User user) throws UserAlreadyExistException {
@@ -30,5 +35,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public User getUserByLogin(String login) {
         return userRepository.getUserByLogin(login);
+    }
+
+    @Override
+    public void addItemToBusket(Item item) {
+        sessionUserService.getCurrentSessionUser().getBusket().add(item);
     }
 }

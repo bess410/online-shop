@@ -4,6 +4,9 @@ import com.epam.andrei_sterkhov.online_shop.enums.Role;
 import lombok.Data;
 import lombok.ToString;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 @Data
 @ToString
@@ -13,4 +16,5 @@ public class User{
     private String login;
     private String pass;
     private Role role = Role.CLIENT;
+    private List<Item> busket = new ArrayList<>();
 }

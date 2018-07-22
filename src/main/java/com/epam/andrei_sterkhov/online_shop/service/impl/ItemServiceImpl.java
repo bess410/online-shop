@@ -26,4 +26,9 @@ public class ItemServiceImpl implements ItemService {
     public void updateItem(Long itemId, Item item) {
         itemRepository.updateItem(itemId, item);
     }
+
+    @Override
+    public Item getItemById(Long id) {
+        return itemRepository.getItemById(id);
+    }
 }

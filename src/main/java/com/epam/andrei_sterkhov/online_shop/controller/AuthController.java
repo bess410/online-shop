@@ -39,7 +39,7 @@ public class AuthController {
             return modelAndView;
         }
 
-        modelAndView.setViewName("redirect:index");
+        modelAndView.setViewName("redirect:");
         return modelAndView;
     }
 
@@ -58,7 +58,7 @@ public class AuthController {
     }
 
     @PostMapping("login")
-    public ModelAndView login(ModelAndView modelAndView, HttpServletRequest request, User user) {
+    public ModelAndView login(ModelAndView modelAndView, User user) {
         String login = user.getLogin();
         boolean authenticated = userService.isExist(login);
 
@@ -67,7 +67,7 @@ public class AuthController {
             // Проверяем пароль
             if (userFromDb.getPass().equals(user.getPass())) {
                 sessionUserService.setCurrentSessionUser(userFromDb);
-                modelAndView.setViewName("redirect:index");
+                modelAndView.setViewName("redirect:client");
                 return modelAndView;
             }
         }

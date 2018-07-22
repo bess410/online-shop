@@ -1,6 +1,7 @@
 package com.epam.andrei_sterkhov.online_shop.controller;
 
 import com.epam.andrei_sterkhov.online_shop.dto.User;
+import com.epam.andrei_sterkhov.online_shop.service.CategoryService;
 import com.epam.andrei_sterkhov.online_shop.service.SessionUserService;
 import com.epam.andrei_sterkhov.online_shop.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,13 +16,18 @@ public class AdminController {
     @Autowired
     private SessionUserService sessionUserService;
 
+
+    @Autowired
+    private CategoryService categoryService;
+
     @Autowired
     private UserService userService;
 
     @GetMapping("admin")
     private ModelAndView admin(ModelAndView modelAndView) {
         modelAndView.addObject("currentUser", sessionUserService.getCurrentSessionUser());
-        modelAndView.setViewName("redirect:admin/requests");
+        modelAndView.addObject("categories", categoryService.getAllCategories());
+        modelAndView.setViewName("admin");
         return modelAndView;
     }
 

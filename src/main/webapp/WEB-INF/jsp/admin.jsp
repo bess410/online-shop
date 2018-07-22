@@ -21,10 +21,10 @@
 
     <!--Навигация-->
     <div class="d-flex bg-success p-4 fixed-top">
-        <div class="bg-basic p-0 pl-1 pr-2">${currentUser.userName}</div>
+        <div class="bg-basic p-0 pl-1 pr-2">Администратор ${currentUser.userName}</div>
         <a href="logout" class="btn btn-danger mr-auto ml-3 p-0 px-1" role="button">Выйти</a>
         <button type="button" class="btn bg-warning p-0 px-1 ml-2" data-toggle="modal" data-target="#search">Поиск</button>
-        <button id="busket_button" type="button" class="btn bg-primary p-0 px-1 ml-2" data-toggle="modal" data-target="#busket">Корзина
+        <button type="button" class="btn bg-primary p-0 px-1 ml-2" data-toggle="modal" data-target="#busket">Корзина
             <span id="item_count" class="d-none badge badge-light ml-1">0</span>
         </button>
     </div>
@@ -45,7 +45,7 @@
                     <div class="d-none justify-content-around align-content-center w-75 mh-9 overflow-hidden align-self-center">
                         <div class="w-50">${item.description}</div>
                         <div class="align-self-center font-weight-bold"><span class="price">${item.price}</span> руб.</div>
-                        <button type="button" value="${item.id}" class="btn bg-primary add_item align-self-center">В корзину</button>
+                        <button type="button" class="btn bg-primary add_item align-self-center">В корзину</button>
                     </div>
                 </div>
             </c:forEach>
@@ -92,22 +92,6 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body d-flex justify-content-start flex-wrap" id="busket_body">
-
-                    <c:forEach var="busketItem" items="${currentUser.busket}">
-                        <div class="item-full-view d-flex justify-content-between w-100 m-2 bg-light rounded">
-                            <div class="card w-12_5">
-                                <img class="card-img-top" src="${busketItem.imageUrl}" alt="item image">
-                                <div class="card-body">
-                                    <h4 class="text-center">${busketItem.name}</h4>
-                                </div>
-                            </div>
-                            <div class="justify-content-around align-content-center w-75 mh-9 overflow-hidden align-self-center d-flex">
-                                <div class="w-50">${busketItem.description}</div>
-                                <div class="align-self-center font-weight-bold"><span class="price">${busketItem.price}</span> руб.</div>
-                                <button type="button" value="${busketItem.id}" class="btn bg-primary align-self-center delete_item">Удалить</button>
-                            </div>
-                        </div>
-                    </c:forEach>
 
                 </div>
                 <!-- Modal footer -->

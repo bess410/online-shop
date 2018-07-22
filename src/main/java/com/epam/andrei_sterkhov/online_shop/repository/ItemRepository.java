@@ -10,4 +10,5 @@ public interface ItemRepository {
 
     void updateItem(Long itemId, Item item);
 
+    Item getItemById(Long id);
 }
