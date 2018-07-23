@@ -1,12 +1,10 @@
 package com.epam.andrei_sterkhov.online_shop.controller;
 
-import com.epam.andrei_sterkhov.online_shop.dto.User;
 import com.epam.andrei_sterkhov.online_shop.service.CategoryService;
 import com.epam.andrei_sterkhov.online_shop.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -21,21 +19,6 @@ public class AdminController {
     private ModelAndView admin(ModelAndView modelAndView) {
         modelAndView.addObject("categories", categoryService.getAllCategories());
         modelAndView.setViewName("admin");
-        return modelAndView;
-    }
-
-    @GetMapping("admin/settings")
-    private ModelAndView adminSettings(ModelAndView modelAndView) {
-        modelAndView.setViewName("admin_settings");
-        return modelAndView;
-    }
-
-    @PostMapping("admin/settings")
-    private ModelAndView adminSettingsPost(ModelAndView modelAndView, User user) {
-        //long userId = sessionUserService.getCurrentSessionUser().getId();
-        //userService.updateUser(user, userId);
-        //sessionUserService.setCurrentSessionUser(userService.findUserById(userId));
-        modelAndView.setViewName("admin_settings");
         return modelAndView;
     }
 }

@@ -29,8 +29,8 @@ public class HomeController {
     private void initialize() throws UserAlreadyExistException {
         generator.generateCategories(3, 10);
         User user = new User();
-        user.setLogin("arni");
-        user.setPass("arni");
+        user.setLogin("admin");
+        user.setPass("admin");
         user.setUserName("Arnold");
         user.setSurname("Shvartsneger");
         user.setRole(Role.ADMIN);

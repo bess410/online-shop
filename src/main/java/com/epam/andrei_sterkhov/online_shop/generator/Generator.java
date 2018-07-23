@@ -30,7 +30,7 @@ public class Generator {
         for (int i = 0; i < size; i++) {
             price = (random.nextInt(10) + 1) * 1000;
             name = names[random.nextInt(names.length)];
-            item = new Item(name, price, "Description", "../images/maifun.jpg");
+            item = new Item(name, price, "Description", "/images/maifun.jpg");
             itemService.createItem(item.getId(), item);
             itemList.add(item);
         }

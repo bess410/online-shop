@@ -1,6 +1,5 @@
 package com.epam.andrei_sterkhov.online_shop.controller;
 
-import com.epam.andrei_sterkhov.online_shop.dto.User;
 import com.epam.andrei_sterkhov.online_shop.service.ItemService;
 import com.epam.andrei_sterkhov.online_shop.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,21 +37,6 @@ public class ClientController {
     @GetMapping("client/basket")
     private ModelAndView getBasket(ModelAndView modelAndView) {
         modelAndView.setViewName("basket");
-        return modelAndView;
-    }
-
-    @GetMapping("client/settings")
-    private ModelAndView clientSettings(ModelAndView modelAndView) {
-        modelAndView.setViewName("user_settings");
-        return modelAndView;
-    }
-
-    @PostMapping("client/settings")
-    private ModelAndView clientSettingsPost(ModelAndView modelAndView, User user) {
-        //long userId = sessionUserService.getCurrentSessionUser().getId();
-        //userService.updateUser(user, userId);
-        //sessionUserService.setCurrentSessionUser(userService.findUserById(userId));
-        modelAndView.setViewName("user_settings");
         return modelAndView;
     }
 }
