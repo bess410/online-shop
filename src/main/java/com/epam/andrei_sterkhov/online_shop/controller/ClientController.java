@@ -30,6 +30,11 @@ public class ClientController {
         userService.addItemToBasket(itemService.getItemById(id));
     }
 
+    @PostMapping("client/delete/{id}")
+    private void deleteItem(@PathVariable Long id) {
+        userService.deleteItemFromBasket(itemService.getItemById(id));
+    }
+
     @GetMapping("client/basket")
     private ModelAndView getBasket(ModelAndView modelAndView) {
         modelAndView.setViewName("basket");

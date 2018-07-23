@@ -41,4 +41,9 @@ public class UserServiceImpl implements UserService {
     public void addItemToBasket(Item item) {
         sessionUserService.getCurrentSessionUser().getBasket().add(item);
     }
+
+    @Override
+    public void deleteItemFromBasket(Item itemById) {
+        sessionUserService.getCurrentSessionUser().getBasket().remove(itemById);
+    }
 }

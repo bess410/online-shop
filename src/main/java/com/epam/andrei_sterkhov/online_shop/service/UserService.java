@@ -12,4 +12,6 @@ public interface UserService {
     User getUserByLogin(String login);
 
     void addItemToBasket(Item item);
+
+    void deleteItemFromBasket(Item itemById);
 }

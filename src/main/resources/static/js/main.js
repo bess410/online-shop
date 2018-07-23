@@ -19,7 +19,7 @@ $(document).ready(function () {
         $('html').animate({ scrollTop: target_top }, 0);
     });
 
-    // Счетчик товаров в корзине
+    // Добавление товаров в корзину
     $('.add_item').click(function () {
         var item_count = $('#item_count').text();
         item_count++;
@@ -38,14 +38,16 @@ $(document).ready(function () {
     });
 
     // Удаление товара из корзины
-    $("#basket_body").on("click", ".delete_item", function () {
+    $('#basket').on('click', '.delete_item', function(){
         var item_count = $('#item_count').text();
         item_count--;
         if (item_count === 0) {
             $('#item_count').addClass('d-none');
         }
         $('#item_count').text(item_count);
-        $(this).parents(".item-full-view").remove();
+
+         var itemId = $(this).attr("value");
+         $.post( "client/delete/" + itemId);
     });
 
     // Сброс содержимого поиска
