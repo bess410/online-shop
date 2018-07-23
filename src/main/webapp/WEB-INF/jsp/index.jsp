@@ -25,7 +25,7 @@
         <a href="logout" class="btn btn-danger mr-auto ml-3 p-0 px-1" role="button">Выйти</a>
         <button type="button" class="btn bg-warning p-0 px-1 ml-2" data-toggle="modal" data-target="#search">Поиск</button>
         <button id="busket_button" type="button" class="btn bg-primary p-0 px-1 ml-2" data-toggle="modal" data-target="#busket">Корзина
-            <span id="item_count" class="d-none badge badge-light ml-1">0</span>
+            <span id="item_count" class="${currentUser.busket.size() == 0 ?  'd-none badge badge-light ml-1': 'badge badge-light ml-1'}">${currentUser.busket.size()}</span>
         </button>
     </div>
     <!--Категории товаров-->

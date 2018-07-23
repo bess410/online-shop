@@ -48,20 +48,6 @@ $(document).ready(function () {
         $(this).parents(".item-full-view").remove();
     });
 
-    $("body").on('DOMSubtreeModified', "#busket_body", function () {
-        var sum = 0;
-        $("#busket_body").find(".price").each(function () {
-            sum += Number($(this).text());
-        });
-        $("#sum").text(sum);
-        // Случайный размер скидки
-        $("#discount").text(DISCOUNT);
-
-        $("#sum-discount").text($("#discount").text() * sum / 100);
-
-        $("#sum-to-pay").text($("#sum").text() - $("#sum-discount").text());
-    });
-
     // Сброс содержимого поиска
     $("button[data-toggle='modal']").click(function () {
         $("#search_text").val("");

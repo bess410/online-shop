@@ -38,10 +38,6 @@ public class ClientController {
     private ModelAndView getBusket(ModelAndView modelAndView) {
         User currentUser = sessionUserService.getCurrentSessionUser();
         modelAndView.addObject("currentUser", currentUser);
-        modelAndView.addObject("discount", currentUser.getDiscount());
-        modelAndView.addObject("sum", currentUser.getSum());
-        modelAndView.addObject("sumDiscount", currentUser.getSumDiscount());
-        modelAndView.addObject("sumToPay", currentUser.getSumToPay());
         modelAndView.setViewName("busket");
         return modelAndView;
     }
