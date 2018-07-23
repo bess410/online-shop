@@ -91,12 +91,13 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body d-flex justify-content-start flex-wrap" id="basket_body">
-                    <form action="admin/createItem" method="post" enctype="multipart/form-data">
-                        <select class="form-control" id="categoryName" name="categoryName">
+                    <form action="admin/createItem" method="post">
+                        <input type="text" list="categories" name="categoryName"/>
+                        <datalist id="categories">
                             <c:forEach var="category" items="${categories}">
                                 <option>${category.key}</option>
                             </c:forEach>
-                        </select>
+                        </datalist>
                         <input type="text" id="imageUrl" name="imageUrl"/>
                         <input type="text" id="name" name="name"/>
                         <textarea id="description" name="description"></textarea>
@@ -106,7 +107,6 @@
                 </div>
                 <!-- Modal footer -->
                 <div class="modal-footer p-4 justify-content-around d-flex justify-content-start">
-
                 </div>
             </div>
         </div>
