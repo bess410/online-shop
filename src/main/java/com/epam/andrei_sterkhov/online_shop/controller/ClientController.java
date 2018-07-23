@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
-import javax.servlet.http.HttpServletResponse;
 
 @Controller
 public class ClientController {
@@ -26,14 +25,24 @@ public class ClientController {
 
     @GetMapping("client")
     private ModelAndView client(ModelAndView modelAndView) {
-        modelAndView.setViewName("index");
+        modelAndView.setViewName("redirect:index");
         return modelAndView;
     }
 
     @PostMapping("client/add/{id}")
-    private ModelAndView addItem(ModelAndView modelAndView, @PathVariable Long id, HttpServletResponse response){
+    private void addItem(@PathVariable Long id) {
         userService.addItemToBusket(itemService.getItemById(id));
-        modelAndView.setViewName("redirect:/index");
+    }
+
+    @GetMapping("client/busket")
+    private ModelAndView getBusket(ModelAndView modelAndView) {
+        User currentUser = sessionUserService.getCurrentSessionUser();
+        modelAndView.addObject("currentUser", currentUser);
+        modelAndView.addObject("discount", currentUser.getDiscount());
+        modelAndView.addObject("sum", currentUser.getSum());
+        modelAndView.addObject("sumDiscount", currentUser.getSumDiscount());
+        modelAndView.addObject("sumToPay", currentUser.getSumToPay());
+        modelAndView.setViewName("busket");
         return modelAndView;
     }
 

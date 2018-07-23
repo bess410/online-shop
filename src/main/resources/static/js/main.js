@@ -29,16 +29,13 @@ $(document).ready(function () {
         var itemId = $(this).attr("value");
 
         $.post("client/add/" + itemId);
-       /* var html = $(this).parents(".item-full-view").clone();
-        $("#busket_body").append(html);
-
-        // Меняем кнопку "В корзину" на "Удалить"
-        var button = $(".modal-body button");
-        button.text("Удалить");
-        button.removeClass("add_item");
-        button.addClass("delete_item");*/
     });
 
+    $('#busket_button').click(function(){
+        $.get( "client/busket", function(response) {
+            $("#busket").html(response);
+        });
+    });
 
     // Удаление товара из корзины
     $("#busket_body").on("click", ".delete_item", function () {
@@ -51,9 +48,7 @@ $(document).ready(function () {
         $(this).parents(".item-full-view").remove();
     });
 
-    // Считаем сумму товаров, скидку и итоговую стоимость
-    const DISCOUNT = parseInt(Math.random() * 10 + 1);
-    /*$("body").on('DOMSubtreeModified', "#busket_body", function () {
+    $("body").on('DOMSubtreeModified', "#busket_body", function () {
         var sum = 0;
         $("#busket_body").find(".price").each(function () {
             sum += Number($(this).text());
@@ -65,7 +60,7 @@ $(document).ready(function () {
         $("#sum-discount").text($("#discount").text() * sum / 100);
 
         $("#sum-to-pay").text($("#sum").text() - $("#sum-discount").text());
-    });*/
+    });
 
     // Сброс содержимого поиска
     $("button[data-toggle='modal']").click(function () {
