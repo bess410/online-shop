@@ -12,4 +12,6 @@ public interface CategoryRepository {
     Category getCategoryByName(String name);
 
     Map<String, Category> getAllCategories();
+
+    boolean isExist(String categoryName);
 }

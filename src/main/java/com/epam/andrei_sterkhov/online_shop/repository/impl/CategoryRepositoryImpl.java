@@ -33,4 +33,9 @@ public class CategoryRepositoryImpl implements CategoryRepository {
     public Map<String, Category> getAllCategories() {
         return categories;
     }
+
+    @Override
+    public boolean isExist(String categoryName) {
+        return categories.containsKey(categoryName);
+    }
 }

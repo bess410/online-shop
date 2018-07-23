@@ -16,4 +16,6 @@ public interface CategoryService {
     void setListItemToCategory(String categoryName, List<Item> itemList);
 
     Map<String, Category> getAllCategories();
+
+    void addItemToCategory(String categoryName, Item item);
 }

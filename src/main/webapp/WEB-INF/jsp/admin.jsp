@@ -15,6 +15,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
     <script src="/js/main.js"></script>
+    <script src="/js/admin.js"></script>
 </head>
 
 <body>
@@ -24,9 +25,7 @@
         <div class="bg-basic p-0 pl-1 pr-2">Администратор ${currentUser.userName}</div>
         <a href="logout" class="btn btn-danger mr-auto ml-3 p-0 px-1" role="button">Выйти</a>
         <button type="button" class="btn bg-warning p-0 px-1 ml-2" data-toggle="modal" data-target="#search">Поиск</button>
-        <button type="button" class="btn bg-primary p-0 px-1 ml-2" data-toggle="modal" data-target="#basket">Корзина
-            <span id="item_count" class="d-none badge badge-light ml-1">0</span>
-        </button>
+        <button type="button" class="btn bg-primary p-0 px-1 ml-2" data-toggle="modal" data-target="#addItem">Добавить товар</button>
     </div>
     <!--Категории товаров-->
     <div class="container-fluid p-0 py-1 margin-top">
@@ -82,47 +81,32 @@
         </div>
     </div>
 
-    <!-- The basket window-->
-    <div class="modal" id="basket">
+    <!-- The adding item window-->
+    <div class="modal" id="addItem">
         <div class="popup_window w-50">
             <div class="modal-content">
                 <!-- Modal Header -->
                 <div class="modal-header">
-                    <h1 class="text-center w-100 ml-1_1">Корзина</h1>
+                    <h1 class="text-center w-100 ml-1_1">Добавление товара</h1>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body d-flex justify-content-start flex-wrap" id="basket_body">
-
+                    <form action="admin/createItem" method="post" enctype="multipart/form-data">
+                        <select class="form-control" id="categoryName" name="categoryName">
+                            <c:forEach var="category" items="${categories}">
+                                <option>${category.key}</option>
+                            </c:forEach>
+                        </select>
+                        <input type="text" id="imageUrl" name="imageUrl"/>
+                        <input type="text" id="name" name="name"/>
+                        <textarea id="description" name="description"></textarea>
+                        <input type="text" id="price" name="price"/>
+                        <button type="submit" class="btn btn-primary m-auto">Оформить</button>
+                    </form>
                 </div>
                 <!-- Modal footer -->
                 <div class="modal-footer p-4 justify-content-around d-flex justify-content-start">
-                    <div class="d-flex flex-column rounded">
-                        <div>
-                            Cумма товаров:
-                        </div>
-                        <div>
-                            Скидка <span id="discount">10</span>%
-                        </div>
-                        <div>
-                            Итого:
-                        </div>
-                    </div>
-                    <div class="d-flex flex-column rounded">
-                        <div>
-                            <span id="sum">0</span> руб.
-                        </div>
-                        <div>
-                            <span id="sum-discount">0</span> руб.
-                        </div>
-                        <div>
-                            <span id="sum-to-pay">0</span> руб.
-                        </div>
-                    </div>
-                    <form action="" method="get">
-                        <div class="text-center">
-                            <button id="order_items" class="btn btn-primary m-auto">Оформить</button>
-                        </div>
-                    </form>
+
                 </div>
             </div>
         </div>
