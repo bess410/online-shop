@@ -48,7 +48,20 @@ $(document).ready(function () {
 
          var itemId = $(this).attr("value");
          $.post( "client/delete/" + itemId);
-         $(this).parents(".item-full-view").remove();// КОСТЫЛЬ
+         $(this).parents(".item-full-view").remove(); // Удаление html кода товара
+    });
+
+    // Пересчет суммы для оплаты и скидка
+    $("body").on('DOMSubtreeModified', "#basket_body", function () {
+        var sum = 0;
+        $("#basket_body").find(".price").each(function () {
+            sum += Number($(this).text());
+        });
+        $("#sum").text(sum);
+
+        $("#sum-discount").text($("#discount").text() * sum / 100);
+
+        $("#sum-to-pay").text($("#sum").text() - $("#sum-discount").text());
     });
 
     // Сброс содержимого поиска
