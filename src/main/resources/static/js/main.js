@@ -48,6 +48,7 @@ $(document).ready(function () {
 
          var itemId = $(this).attr("value");
          $.post( "client/delete/" + itemId);
+         $(this).parents(".item-full-view").remove();// КОСТЫЛЬ
     });
 
     // Сброс содержимого поиска
