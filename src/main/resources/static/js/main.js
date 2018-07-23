@@ -31,14 +31,14 @@ $(document).ready(function () {
         $.post("client/add/" + itemId);
     });
 
-    $('#busket_button').click(function(){
-        $.get( "client/busket", function(response) {
-            $("#busket").html(response);
+    $('#basket_button').click(function(){
+        $.get( "client/basket", function(response) {
+            $("#basket").html(response);
         });
     });
 
     // Удаление товара из корзины
-    $("#busket_body").on("click", ".delete_item", function () {
+    $("#basket_body").on("click", ".delete_item", function () {
         var item_count = $('#item_count').text();
         item_count--;
         if (item_count === 0) {

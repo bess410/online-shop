@@ -23,7 +23,7 @@ public class AuthInterceptor implements HandlerInterceptor {
             response.sendRedirect("/login");
             return false;
         }
-
+        request.setAttribute("currentUser", user);
         return true;
     }
 }

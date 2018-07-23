@@ -17,10 +17,10 @@ public class User{
     private String pass;
     private Role role = Role.CLIENT;
     private int discount = 10;
-    private List<Item> busket = new ArrayList<>();
+    private List<Item> basket = new ArrayList<>();
 
     public int getSum() {
-        return busket.stream().map(Item::getPrice).mapToInt(Integer::intValue).sum();
+        return basket.stream().map(Item::getPrice).mapToInt(Integer::intValue).sum();
     }
 
     public int getSumDiscount() {

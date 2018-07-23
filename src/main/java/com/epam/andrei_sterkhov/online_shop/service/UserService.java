@@ -11,5 +11,5 @@ public interface UserService {
 
     User getUserByLogin(String login);
 
-    void addItemToBusket(Item item);
+    void addItemToBasket(Item item);
 }

@@ -24,7 +24,7 @@
         <div class="bg-basic p-0 pl-1 pr-2">Администратор ${currentUser.userName}</div>
         <a href="logout" class="btn btn-danger mr-auto ml-3 p-0 px-1" role="button">Выйти</a>
         <button type="button" class="btn bg-warning p-0 px-1 ml-2" data-toggle="modal" data-target="#search">Поиск</button>
-        <button type="button" class="btn bg-primary p-0 px-1 ml-2" data-toggle="modal" data-target="#busket">Корзина
+        <button type="button" class="btn bg-primary p-0 px-1 ml-2" data-toggle="modal" data-target="#basket">Корзина
             <span id="item_count" class="d-none badge badge-light ml-1">0</span>
         </button>
     </div>
@@ -82,8 +82,8 @@
         </div>
     </div>
 
-    <!-- The busket window-->
-    <div class="modal" id="busket">
+    <!-- The basket window-->
+    <div class="modal" id="basket">
         <div class="popup_window w-50">
             <div class="modal-content">
                 <!-- Modal Header -->
@@ -91,7 +91,7 @@
                     <h1 class="text-center w-100 ml-1_1">Корзина</h1>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
-                <div class="modal-body d-flex justify-content-start flex-wrap" id="busket_body">
+                <div class="modal-body d-flex justify-content-start flex-wrap" id="basket_body">
 
                 </div>
                 <!-- Modal footer -->

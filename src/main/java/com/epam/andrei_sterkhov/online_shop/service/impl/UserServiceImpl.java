@@ -38,7 +38,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void addItemToBusket(Item item) {
-        sessionUserService.getCurrentSessionUser().getBusket().add(item);
+    public void addItemToBasket(Item item) {
+        sessionUserService.getCurrentSessionUser().getBasket().add(item);
     }
 }

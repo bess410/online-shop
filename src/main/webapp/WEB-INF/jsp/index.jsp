@@ -24,8 +24,8 @@
         <div class="bg-basic p-0 pl-1 pr-2">${currentUser.userName}</div>
         <a href="logout" class="btn btn-danger mr-auto ml-3 p-0 px-1" role="button">Выйти</a>
         <button type="button" class="btn bg-warning p-0 px-1 ml-2" data-toggle="modal" data-target="#search">Поиск</button>
-        <button id="busket_button" type="button" class="btn bg-primary p-0 px-1 ml-2" data-toggle="modal" data-target="#busket">Корзина
-            <span id="item_count" class="${currentUser.busket.size() == 0 ?  'd-none badge badge-light ml-1': 'badge badge-light ml-1'}">${currentUser.busket.size()}</span>
+        <button id="basket_button" type="button" class="btn bg-primary p-0 px-1 ml-2" data-toggle="modal" data-target="#basket">Корзина
+            <span id="item_count" class="${currentUser.basket.size() == 0 ?  'd-none badge badge-light ml-1': 'badge badge-light ml-1'}">${currentUser.basket.size()}</span>
         </button>
     </div>
     <!--Категории товаров-->
@@ -82,8 +82,8 @@
         </div>
     </div>
 
-    <!-- The busket window-->
-    <div class="modal" id="busket">
+    <!-- The basket window-->
+    <div class="modal" id="basket">
 
     </div>
 

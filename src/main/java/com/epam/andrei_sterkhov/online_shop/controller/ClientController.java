@@ -2,7 +2,6 @@ package com.epam.andrei_sterkhov.online_shop.controller;
 
 import com.epam.andrei_sterkhov.online_shop.dto.User;
 import com.epam.andrei_sterkhov.online_shop.service.ItemService;
-import com.epam.andrei_sterkhov.online_shop.service.SessionUserService;
 import com.epam.andrei_sterkhov.online_shop.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,9 +12,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class ClientController {
-
-    @Autowired
-    private SessionUserService sessionUserService;
 
     @Autowired
     private UserService userService;
@@ -31,20 +27,17 @@ public class ClientController {
 
     @PostMapping("client/add/{id}")
     private void addItem(@PathVariable Long id) {
-        userService.addItemToBusket(itemService.getItemById(id));
+        userService.addItemToBasket(itemService.getItemById(id));
     }
 
-    @GetMapping("client/busket")
-    private ModelAndView getBusket(ModelAndView modelAndView) {
-        User currentUser = sessionUserService.getCurrentSessionUser();
-        modelAndView.addObject("currentUser", currentUser);
-        modelAndView.setViewName("busket");
+    @GetMapping("client/basket")
+    private ModelAndView getBasket(ModelAndView modelAndView) {
+        modelAndView.setViewName("basket");
         return modelAndView;
     }
 
     @GetMapping("client/settings")
     private ModelAndView clientSettings(ModelAndView modelAndView) {
-        modelAndView.addObject("currentUser", sessionUserService.getCurrentSessionUser());
         modelAndView.setViewName("user_settings");
         return modelAndView;
     }
@@ -54,7 +47,6 @@ public class ClientController {
         //long userId = sessionUserService.getCurrentSessionUser().getId();
         //userService.updateUser(user, userId);
         //sessionUserService.setCurrentSessionUser(userService.findUserById(userId));
-        modelAndView.addObject("currentUser", sessionUserService.getCurrentSessionUser());
         modelAndView.setViewName("user_settings");
         return modelAndView;
     }

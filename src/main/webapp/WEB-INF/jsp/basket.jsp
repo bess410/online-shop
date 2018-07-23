@@ -10,20 +10,20 @@
             <h1 class="text-center w-100 ml-1_1">Корзина</h1>
             <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
-        <div class="modal-body d-flex justify-content-start flex-wrap" id="busket_body">
+        <div class="modal-body d-flex justify-content-start flex-wrap" id="basket_body">
 
-            <c:forEach var="busketItem" items="${currentUser.busket}">
+            <c:forEach var="basketItem" items="${currentUser.basket}">
                 <div class="item-full-view d-flex justify-content-between w-100 m-2 bg-light rounded">
                     <div class="card w-12_5">
-                        <img class="card-img-top" src="${busketItem.imageUrl}" alt="item image">
+                        <img class="card-img-top" src="${basketItem.imageUrl}" alt="item image">
                         <div class="card-body">
-                            <h4 class="text-center">${busketItem.name}</h4>
+                            <h4 class="text-center">${basketItem.name}</h4>
                         </div>
                     </div>
                     <div class="justify-content-around align-content-center w-75 mh-9 overflow-hidden align-self-center d-flex">
-                        <div class="w-50">${busketItem.description}</div>
-                        <div class="align-self-center font-weight-bold"><span class="price">${busketItem.price}</span> руб.</div>
-                        <button type="button" value="${busketItem.id}" class="btn bg-primary align-self-center delete_item">Удалить</button>
+                        <div class="w-50">${basketItem.description}</div>
+                        <div class="align-self-center font-weight-bold"><span class="price">${basketItem.price}</span> руб.</div>
+                        <button type="button" value="${basketItem.id}" class="btn bg-primary align-self-center delete_item">Удалить</button>
                     </div>
                 </div>
             </c:forEach>

@@ -2,7 +2,6 @@ package com.epam.andrei_sterkhov.online_shop.controller;
 
 import com.epam.andrei_sterkhov.online_shop.dto.User;
 import com.epam.andrei_sterkhov.online_shop.service.CategoryService;
-import com.epam.andrei_sterkhov.online_shop.service.SessionUserService;
 import com.epam.andrei_sterkhov.online_shop.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,11 +11,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class AdminController {
-
-    @Autowired
-    private SessionUserService sessionUserService;
-
-
     @Autowired
     private CategoryService categoryService;
 
@@ -25,7 +19,6 @@ public class AdminController {
 
     @GetMapping("admin")
     private ModelAndView admin(ModelAndView modelAndView) {
-        modelAndView.addObject("currentUser", sessionUserService.getCurrentSessionUser());
         modelAndView.addObject("categories", categoryService.getAllCategories());
         modelAndView.setViewName("admin");
         return modelAndView;
@@ -33,7 +26,6 @@ public class AdminController {
 
     @GetMapping("admin/settings")
     private ModelAndView adminSettings(ModelAndView modelAndView) {
-        modelAndView.addObject("currentUser", sessionUserService.getCurrentSessionUser());
         modelAndView.setViewName("admin_settings");
         return modelAndView;
     }
@@ -43,7 +35,6 @@ public class AdminController {
         //long userId = sessionUserService.getCurrentSessionUser().getId();
         //userService.updateUser(user, userId);
         //sessionUserService.setCurrentSessionUser(userService.findUserById(userId));
-        modelAndView.addObject("currentUser", sessionUserService.getCurrentSessionUser());
         modelAndView.setViewName("admin_settings");
         return modelAndView;
     }
