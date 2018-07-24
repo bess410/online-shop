@@ -91,14 +91,20 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body d-flex justify-content-start flex-wrap" id="basket_body">
-                    <form action="admin/createItem" method="post">
-                        <input type="text" list="categories" name="categoryName"/>
-                        <datalist id="categories">
-                            <c:forEach var="category" items="${categories}">
-                                <option>${category.key}</option>
-                            </c:forEach>
-                        </datalist>
-                        <input type="text" id="imageUrl" name="imageUrl"/>
+                    <form class="text-center m-auto" action="admin/createItem" method="post">
+                        <div class="form-group m-4">
+                            <input type="text" list="categories" name="categoryName" placeholder="Выберите категорию"/>
+                            <datalist id="categories">
+                                <c:forEach var="category" items="${categories}">
+                                    <option>${category.key}</option>
+                                </c:forEach>
+                            </datalist>
+                        </div>
+                        <div class="form-group m-4">
+                            <label for="imageUrl">Выберите картинку</label>
+                            <input type="file" id="imageUrl" name="imageUrl" accept=".jpg, .jpeg, .png"/>
+                        </div>
+
                         <input type="text" id="name" name="name"/>
                         <textarea id="description" name="description"></textarea>
                         <input type="text" id="price" name="price"/>
