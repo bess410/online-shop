@@ -42,4 +42,27 @@ public class AdminController {
         modelAndView.setViewName("redirect:/admin");
         return modelAndView;
     }
+
+    @GetMapping("admin/edit/{categoryName}/{id}")
+    private ModelAndView openEditItemPopup(ModelAndView modelAndView, @PathVariable String categoryName, @PathVariable Long id) {
+        modelAndView.addObject("categories", categoryService.getAllCategories());
+        modelAndView.addObject("item", itemService.getItemById(id));
+        modelAndView.addObject("category", categoryName);
+        modelAndView.setViewName("editingItem");
+        return modelAndView;
+    }
+
+    @PostMapping("admin/edit/{category}")
+    private ModelAndView editItem(ModelAndView modelAndView, String categoryName, Item item, @PathVariable String category) {
+        categoryService.removeItemFromCategory(category, item.getId());
+        categoryService.addItemToCategory(categoryName, item);
+        modelAndView.setViewName("redirect:/admin");
+        return modelAndView;
+    }
+
+    @GetMapping("admin/add")
+    private ModelAndView addItem(ModelAndView modelAndView) {
+        modelAndView.setViewName("addingItem");
+        return modelAndView;
+    }
 }
