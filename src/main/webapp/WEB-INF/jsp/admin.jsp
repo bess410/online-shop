@@ -11,6 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/admin.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
@@ -36,7 +37,7 @@
              <c:forEach var="item" items="${category.value.itemList}">
                 <div>
                     <div class="card m-2 w-12_5">
-                        <img class="card-img-top" src="${item.imageUrl}" alt="item image">
+                        <img class="card-img-top h-10" src="${item.imageUrl}" alt="item image">
                         <div class="card-body">
                             <h4 class="text-center">${item.name}</h4>
                         </div>
@@ -44,7 +45,8 @@
                     <div class="d-none justify-content-around align-content-center w-75 mh-9 overflow-hidden align-self-center">
                         <div class="w-50">${item.description}</div>
                         <div class="align-self-center font-weight-bold"><span class="price">${item.price}</span> руб.</div>
-                        <button type="button" class="btn bg-primary add_item align-self-center">В корзину</button>
+                        <button type="button" value="${item.id}" class="btn bg-primary edit-item align-self-center">Редактировать</button>
+                        <button type="button" value="${category.key}/${item.id}" class="btn bg-primary delete-item align-self-center">Удалить</button>
                     </div>
                 </div>
             </c:forEach>
@@ -91,9 +93,9 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body d-flex justify-content-start flex-wrap" id="basket_body">
-                    <form class="text-center m-auto" action="admin/createItem" method="post">
+                    <form class="text-center m-auto w-75" action="admin/createItem" method="post">
                         <div class="form-group m-4">
-                            <input type="text" list="categories" name="categoryName" placeholder="Выберите категорию"/>
+                            <input class="w-100" type="text" list="categories" name="categoryName" placeholder="Выберите категорию"/>
                             <datalist id="categories">
                                 <c:forEach var="category" items="${categories}">
                                     <option>${category.key}</option>
@@ -101,14 +103,27 @@
                             </datalist>
                         </div>
                         <div class="form-group m-4">
-                            <label for="imageUrl">Выберите картинку</label>
-                            <input type="file" id="imageUrl" name="imageUrl" accept=".jpg, .jpeg, .png"/>
+                            <div class="input-group">
+                                <span class="input-group-btn">
+                                    <span class="btn btn-default btn-file">
+                                        Выберите картинку
+                                        <input type="file" id="imgInp" class="w-100">
+                                    </span>
+                                </span>
+                                <input name="imageUrl" id="imageUrl" type="text" class="form-control w-100" readonly>
+                            </div>
+                            <img id="img-upload"/>
                         </div>
-
-                        <input type="text" id="name" name="name"/>
-                        <textarea id="description" name="description"></textarea>
-                        <input type="text" id="price" name="price"/>
-                        <button type="submit" class="btn btn-primary m-auto">Оформить</button>
+                        <div class="form-group m-4">
+                           <input class="w-100" type="text" id="name" name="name" placeholder="Введите название"/>
+                        </div>
+                        <div class="form-group m-4">
+                           <textarea class="w-100" id="description" name="description" placeholder="Введите описание товара"></textarea>
+                        </div>
+                        <div class="form-group m-4">
+                            <input class="w-100" type="text" id="price" name="price" placeholder="Введите цену"/>
+                        </div>
+                        <button type="submit" class="btn btn-primary m-auto">Добавить товар</button>
                     </form>
                 </div>
                 <!-- Modal footer -->

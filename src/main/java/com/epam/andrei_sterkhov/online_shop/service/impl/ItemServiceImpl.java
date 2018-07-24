@@ -6,6 +6,8 @@ import com.epam.andrei_sterkhov.online_shop.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Map;
+
 @Service
 public class ItemServiceImpl implements ItemService {
 
@@ -30,5 +32,10 @@ public class ItemServiceImpl implements ItemService {
     @Override
     public Item getItemById(Long id) {
         return itemRepository.getItemById(id);
+    }
+
+    @Override
+    public Map<Long, Item> getAllItem() {
+        return itemRepository.getAllItems();
     }
 }

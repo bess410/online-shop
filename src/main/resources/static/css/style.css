@@ -8,6 +8,10 @@
 .w-12_5{
     width: 12.5rem;
 }
+
+.h-10{
+    height: 10rem;
+}
 .overflow-hidden{
     overflow:hidden;
 }

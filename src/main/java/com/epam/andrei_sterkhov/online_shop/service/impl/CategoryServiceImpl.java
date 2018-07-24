@@ -56,4 +56,16 @@ public class CategoryServiceImpl implements CategoryService {
         }
         category.getItemList().add(item);
     }
+
+    @Override
+    public void removeItemFromCategory(String categoryName, Long itemId) {
+        Category category = categoryRepository.getCategoryByName(categoryName);
+        Item item = itemService.getItemById(itemId);
+
+        category.getItemList().remove(item);
+        if(category.getItemList().isEmpty()){
+            categoryRepository.deleteCategory(categoryName);
+        }
+        itemService.deleteItem(itemId);
+    }
 }

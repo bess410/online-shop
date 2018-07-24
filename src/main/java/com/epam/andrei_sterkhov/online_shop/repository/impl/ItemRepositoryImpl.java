@@ -30,4 +30,9 @@ public class ItemRepositoryImpl implements ItemRepository {
     public Item getItemById(Long id) {
         return items.get(id);
     }
+
+    @Override
+    public Map<Long, Item> getAllItems() {
+        return items;
+    }
 }

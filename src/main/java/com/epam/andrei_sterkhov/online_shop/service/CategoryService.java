@@ -18,4 +18,6 @@ public interface CategoryService {
     Map<String, Category> getAllCategories();
 
     void addItemToCategory(String categoryName, Item item);
+
+    void removeItemFromCategory(String categoryName, Long itemId);
 }
