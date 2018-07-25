@@ -11,12 +11,12 @@ $(document).ready(function(){
         }
     }
 
-     $('#addItem').on('change', '.btn-file :file', function() {
+     $('#addItem, #editItem').on('change', '.btn-file :file', function() {
         var input = $(this),label = input.val();
         input.trigger('fileselect', [label]);
      });
 
-    $('#addItem').on('fileselect', '.btn-file', function(event, label) {
+    $('#addItem, #editItem').on('fileselect', '.btn-file', function(event, label) {
         var input = $(this).parents('.input-group').find(':text'),
             log = label;
 
@@ -28,29 +28,7 @@ $(document).ready(function(){
     });
 
 
-    $('#addItem').on('change', "#imgInp", function() {
-        readURL(this);
-    });
-
-
-    $('#editItem').on('change', '.btn-file :file', function() {
-        var input = $(this),label = input.val();
-        input.trigger('fileselect', [label]);
-     });
-
-    $('#editItem').on('fileselect', '.btn-file', function(event, label) {
-        var input = $(this).parents('.input-group').find(':text'),
-            log = label;
-
-        var pos = log.lastIndexOf("\\");
-        log = '\\images' + log.substring(pos);
-        if( input.length ) {
-            input.val(log);
-        }
-    });
-
-
-    $('#editItem').on('change', "#imgInp", function() {
+    $('#addItem, #editItem').on('change', "#imgInp", function() {
         readURL(this);
     });
 

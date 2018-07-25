@@ -32,7 +32,11 @@
     <div class="container-fluid p-0 py-1 margin-top">
         <div class="d-flex flex-wrap p-3 m-auto w-75">
             <h1>Страница, на которую вы пытаетесь попасть, не существует. Либо произошла ошибка на сервере.<br/>
-                 Мы уже решаем данную проблему. Заходите позже.</h1>
+                 Мы уже решаем данную проблему.</h1>
+            <h1>А пока посмотрите видео с этими забавными котиками</h1>
+            <div class="m-auto">
+                <iframe width="853" height="480" src="https://www.youtube.com/embed/l_yJ0aH1tqE" frameborder="0" allowfullscreen ng-show="showvideo"></iframe>
+            </div>
         </div>
         <footer class="footer">
             <div class="container">
