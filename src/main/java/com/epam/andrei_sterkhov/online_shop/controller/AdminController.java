@@ -62,6 +62,7 @@ public class AdminController {
 
     @GetMapping("admin/add")
     private ModelAndView addItem(ModelAndView modelAndView) {
+        modelAndView.addObject("categories", categoryService.getAllCategories());
         modelAndView.setViewName("addingItem");
         return modelAndView;
     }

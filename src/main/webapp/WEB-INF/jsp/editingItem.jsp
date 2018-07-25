@@ -11,8 +11,7 @@
         </div>
         <div class="modal-body d-flex justify-content-start flex-wrap" id="basket_body">
             <form class="text-center m-auto w-75" action="admin/edit/${category}" method="post">
-                <div class="form-group m-4">
-                    <label>ItemId</label>
+                <div class="d-none form-group m-4">
                     <input readonly class="w-100" type="text" name="id" value="${item.id}" />
                 </div>
                 <div class="form-group m-4">
