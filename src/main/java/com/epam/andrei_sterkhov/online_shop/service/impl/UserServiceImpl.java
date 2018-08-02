@@ -9,6 +9,8 @@ import com.epam.andrei_sterkhov.online_shop.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -20,30 +22,30 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void createUser(User user) throws UserAlreadyExistException {
-        if (isExist(user.getLogin())) {
+       /* if (isExist(user.getLogin())) {
             throw new UserAlreadyExistException("Пользователь с Логином ".concat(user.getLogin()).concat(" уже существует."));
-        } else {
-            userRepository.createUser(user.getLogin(), user);
-        }
+        } else {*/
+            userRepository.save(user);
+        //}
     }
-
+/*
     @Override
     public boolean isExist(String login) {
         return userRepository.isExist(login);
-    }
+    }*/
 
     @Override
-    public User getUserByLogin(String login) {
-        return userRepository.getUserByLogin(login);
+    public Optional<User> getUserById(Long id) {
+        return userRepository.findById(id);
     }
 
-    @Override
+   /* @Override
     public void addItemToBasket(Item item) {
         sessionUserService.getCurrentSessionUser().getBasket().add(item);
-    }
+    }*/
 
-    @Override
+   /* @Override
     public void deleteItemFromBasket(Item itemById) {
         sessionUserService.getCurrentSessionUser().getBasket().remove(itemById);
-    }
+    }*/
 }

@@ -4,14 +4,12 @@ import com.epam.andrei_sterkhov.online_shop.dto.Item;
 import com.epam.andrei_sterkhov.online_shop.dto.User;
 import com.epam.andrei_sterkhov.online_shop.exception.UserAlreadyExistException;
 
+import java.util.Optional;
+
 public interface UserService {
     void createUser(User user) throws UserAlreadyExistException;
 
-    boolean isExist(String login);
 
-    User getUserByLogin(String login);
 
-    void addItemToBasket(Item item);
-
-    void deleteItemFromBasket(Item itemById);
+    Optional<User> getUserById(Long id);
 }

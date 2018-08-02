@@ -1,23 +1,28 @@
 package com.epam.andrei_sterkhov.online_shop.dto;
 
-import com.epam.andrei_sterkhov.online_shop.enums.Role;
 import lombok.Data;
-import lombok.ToString;
+import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 
+@Entity
+@Table(name = "user")
 @Data
-@ToString
+@NoArgsConstructor
 public class User{
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    @Column(name = "name")
     private String userName;
     private String surname;
     private String login;
     private String pass;
-    private Role role = Role.CLIENT;
     private int discount = 10;
-    private List<Item> basket = new ArrayList<>();
+   /* private List<Item> basket = new ArrayList<>();
 
     public int getSum() {
         return basket.stream().map(Item::getPrice).mapToInt(Integer::intValue).sum();
@@ -29,5 +34,5 @@ public class User{
 
     public int getSumToPay() {
         return getSum() - getSumDiscount();
-    }
+    }*/
 }

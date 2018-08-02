@@ -19,10 +19,10 @@ public class AdminInterceptor implements HandlerInterceptor {
             throws Exception {
         User user = sessionUserService.getCurrentSessionUser();
 
-        if (user.getRole() == Role.CLIENT) {
+       /* if (user.getRole() == Role.CLIENT) {
             response.sendRedirect("/client");
             return false;
-        }
+        }*/
 
         return true;
     }

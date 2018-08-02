@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Optional;
 
 @Controller
 public class AuthController {
@@ -60,16 +61,16 @@ public class AuthController {
     @PostMapping("login")
     public ModelAndView login(ModelAndView modelAndView, User user) {
         String login = user.getLogin();
-        boolean authenticated = userService.isExist(login);
+        //boolean authenticated = userService.isExist(login);
 
-        if (authenticated) {
-            User userFromDb = userService.getUserByLogin(login);
+        if (true) {
+            Optional<User> userFromDb = userService.getUserById(2L);
             // Проверяем пароль
-            if (userFromDb.getPass().equals(user.getPass())) {
+            /*if (userFromDb.getPass().equals(user.getPass())) {
                 sessionUserService.setCurrentSessionUser(userFromDb);
                 modelAndView.setViewName("redirect:client");
                 return modelAndView;
-            }
+            }*/
         }
 
         modelAndView.addObject("error", "Неверный логин или пароль");
