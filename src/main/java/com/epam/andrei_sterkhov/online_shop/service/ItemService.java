@@ -2,16 +2,25 @@ package com.epam.andrei_sterkhov.online_shop.service;
 
 import com.epam.andrei_sterkhov.online_shop.dto.Item;
 
-import java.util.Map;
+import java.util.List;
+import java.util.Optional;
 
 public interface ItemService {
-    void createItem(Long id, Item item);
+    void createItem(Item item);
 
-    void deleteItem(Long itemId);
 
-    void updateItem(Long itemId, Item item);
+    /*
+        @Override
+        public void deleteItem(Long itemId) {
+            itemRepository.deleteItem(itemId);
+        }
 
-    Item getItemById(Long id);
+        @Override
+        public void updateItem(Long itemId, Item item) {
+            itemRepository.updateItem(itemId, item);
+        }
+    */
+    Optional<Item> getItemById(Long id);
 
-    Map<Long, Item> getAllItem();
+    List<Item> getAllItem();
 }

@@ -6,6 +6,7 @@ import com.epam.andrei_sterkhov.online_shop.exception.UserAlreadyExistException;
 import com.epam.andrei_sterkhov.online_shop.generator.Generator;
 import com.epam.andrei_sterkhov.online_shop.service.CategoryService;
 import com.epam.andrei_sterkhov.online_shop.service.UserService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,18 +15,19 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.annotation.PostConstruct;
 
 @Controller
+@AllArgsConstructor
 public class HomeController {
 
-    @Autowired
+    //@Autowired
     private CategoryService categoryService;
 
-    @Autowired
+    //@Autowired
     private UserService userService;
 
-    @Autowired
+    //@Autowired
     private Generator generator;
 
-    @PostConstruct
+   /* @PostConstruct
     private void initialize() throws UserAlreadyExistException {
         generator.generateCategories(3, 10);
         User user = new User();
@@ -35,11 +37,11 @@ public class HomeController {
         user.setSurname("Shvartsneger");
         user.setRole(Role.ADMIN);
         userService.createUser(user);
-    }
+    }*/
 
     @GetMapping({"/", "/index"})
     private ModelAndView home(ModelAndView modelAndView) {
-        modelAndView.addObject("categories", categoryService.getAllCategories());
+        modelAndView.addObject("categories", categoryService.findAll());
         modelAndView.setViewName("index");
         return modelAndView;
     }

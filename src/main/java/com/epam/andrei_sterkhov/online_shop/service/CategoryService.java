@@ -7,17 +7,8 @@ import java.util.List;
 import java.util.Map;
 
 public interface CategoryService {
+
     Category createCategory(String name);
 
-    void deleteCategory(String name);
-
-    Category getCategoryByName(String categoryName);
-
-    void setListItemToCategory(String categoryName, List<Item> itemList);
-
-    Map<String, Category> getAllCategories();
-
-    void addItemToCategory(String categoryName, Item item);
-
-    void removeItemFromCategory(String categoryName, Long itemId);
+    List<Category> findAll();
 }

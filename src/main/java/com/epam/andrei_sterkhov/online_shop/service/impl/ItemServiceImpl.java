@@ -6,7 +6,9 @@ import com.epam.andrei_sterkhov.online_shop.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @Service
 public class ItemServiceImpl implements ItemService {
@@ -15,10 +17,10 @@ public class ItemServiceImpl implements ItemService {
     private ItemRepository itemRepository;
 
     @Override
-    public void createItem(Long id, Item item) {
-        itemRepository.createItem(id, item);
+    public void createItem(Item item) {
+        itemRepository.save(item);
     }
-
+/*
     @Override
     public void deleteItem(Long itemId) {
         itemRepository.deleteItem(itemId);
@@ -28,14 +30,14 @@ public class ItemServiceImpl implements ItemService {
     public void updateItem(Long itemId, Item item) {
         itemRepository.updateItem(itemId, item);
     }
-
+*/
     @Override
-    public Item getItemById(Long id) {
-        return itemRepository.getItemById(id);
+    public Optional<Item> getItemById(Long id) {
+        return itemRepository.findById(id);
     }
 
     @Override
-    public Map<Long, Item> getAllItem() {
-        return itemRepository.getAllItems();
+    public List<Item> getAllItem() {
+        return itemRepository.findAll();
     }
 }

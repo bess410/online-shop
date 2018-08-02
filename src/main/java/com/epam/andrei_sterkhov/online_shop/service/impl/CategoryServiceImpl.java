@@ -1,7 +1,6 @@
 package com.epam.andrei_sterkhov.online_shop.service.impl;
 
 import com.epam.andrei_sterkhov.online_shop.dto.Category;
-import com.epam.andrei_sterkhov.online_shop.dto.Item;
 import com.epam.andrei_sterkhov.online_shop.repository.CategoryRepository;
 import com.epam.andrei_sterkhov.online_shop.service.CategoryService;
 import com.epam.andrei_sterkhov.online_shop.service.ItemService;
@@ -22,50 +21,11 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public Category createCategory(String name) {
-        return categoryRepository.createCategory(name);
+        return categoryRepository.save(new Category(name));
     }
 
     @Override
-    public void deleteCategory(String name) {
-        categoryRepository.deleteCategory(name);
-    }
-
-    @Override
-    public Category getCategoryByName(String categoryName) {
-        return categoryRepository.getCategoryByName(categoryName);
-    }
-
-    @Override
-    public void setListItemToCategory(String categoryName, List<Item> itemList) {
-        getCategoryByName(categoryName).setItemList(itemList);
-    }
-
-    @Override
-    public Map<String, Category> getAllCategories() {
-        return categoryRepository.getAllCategories();
-    }
-
-    @Override
-    public void addItemToCategory(String categoryName, Item item) {
-        itemService.createItem(item.getId(), item);
-        Category category;
-        if (categoryRepository.isExist(categoryName)) {
-            category = categoryRepository.getCategoryByName(categoryName);
-        } else {
-            category = createCategory(categoryName);
-        }
-        category.getItemList().add(item);
-    }
-
-    @Override
-    public void removeItemFromCategory(String categoryName, Long itemId) {
-        Category category = categoryRepository.getCategoryByName(categoryName);
-        Item item = itemService.getItemById(itemId);
-
-        category.getItemList().remove(item);
-        if(category.getItemList().isEmpty()){
-            categoryRepository.deleteCategory(categoryName);
-        }
-        itemService.deleteItem(itemId);
+    public List<Category> findAll() {
+        return (List<Category>) categoryRepository.findAll();
     }
 }

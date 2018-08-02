@@ -1,23 +1,29 @@
 package com.epam.andrei_sterkhov.online_shop.dto;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import java.util.concurrent.atomic.AtomicLong;
+import javax.persistence.*;
 
+@Entity
+@Table(name = "item")
 @Data
+@NoArgsConstructor
 public class Item {
-    private static AtomicLong count = new AtomicLong();
-    private long id = count.incrementAndGet();
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     private String name;
     private int price;
     private String description;
+    @Column(name = "image_url")
     private String imageUrl;
+    private int amount;
 
-    public Item(String name, int price, String description, String imageUrl) {
-        this.name = name;
-        this.price = price;
-        this.description = description;
-        this.imageUrl = imageUrl;
-    }
+
+    @ManyToOne
+    @JoinColumn(name = "category_id_fk")
+    private Category category;
 }
 

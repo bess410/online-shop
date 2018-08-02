@@ -13,7 +13,7 @@ import java.util.Random;
 
 @Component
 public class Generator {
-    private Random random = new Random();
+    /*private Random random = new Random();
 
     @Autowired
     private CategoryService categoryService;
@@ -45,5 +45,5 @@ public class Generator {
             Category category = categoryService.createCategory(name);
             category.setItemList(generateItemList(random.nextInt(itemSize) + 1));
         }
-    }
+    }*/
 }
