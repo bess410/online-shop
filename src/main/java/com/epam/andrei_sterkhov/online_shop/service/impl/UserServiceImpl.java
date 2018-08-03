@@ -22,11 +22,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void createUser(User user) throws UserAlreadyExistException {
-       /* if (isExist(user.getLogin())) {
+        Optional<User> optionalUser = findUserByLogin(user.getLogin());
+        if(optionalUser.isPresent()){
             throw new UserAlreadyExistException("Пользователь с Логином ".concat(user.getLogin()).concat(" уже существует."));
-        } else {*/
-            userRepository.save(user);
-        //}
+        }
+        userRepository.save(user);
     }
 /*
     @Override
