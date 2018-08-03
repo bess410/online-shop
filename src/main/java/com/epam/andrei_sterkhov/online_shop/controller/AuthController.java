@@ -4,7 +4,7 @@ import com.epam.andrei_sterkhov.online_shop.dto.User;
 import com.epam.andrei_sterkhov.online_shop.exception.UserAlreadyExistException;
 import com.epam.andrei_sterkhov.online_shop.service.SessionUserService;
 import com.epam.andrei_sterkhov.online_shop.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,12 +14,11 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Optional;
 
 @Controller
+@AllArgsConstructor
 public class AuthController {
 
-    @Autowired
     private SessionUserService sessionUserService;
 
-    @Autowired
     private UserService userService;
 
     @GetMapping("registration")

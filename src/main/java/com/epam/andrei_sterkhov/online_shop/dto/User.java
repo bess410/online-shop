@@ -1,16 +1,16 @@
 package com.epam.andrei_sterkhov.online_shop.dto;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Entity
 @Table(name = "client")
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 public class User{
     @Id
@@ -22,6 +22,12 @@ public class User{
     private String login;
     private String pass;
     private int discount = 10;
+
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(name = "permission", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
+
+    private Set<Role> roles = new HashSet<>();
     /*private List<Item> basket = new ArrayList<>();
 
     public int getSum() {

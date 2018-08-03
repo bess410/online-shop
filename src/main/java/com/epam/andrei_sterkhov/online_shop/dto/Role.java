@@ -1,28 +1,25 @@
 package com.epam.andrei_sterkhov.online_shop.dto;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
-@Table(name = "category")
+@Table(name = "role")
 @Getter
 @Setter
 @NoArgsConstructor
-public class Category {
+public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String name;
-    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
-    private List<Item> itemList = new ArrayList<>();
 
-    public Category(String name) {
-        this.name = name;
-    }
+    private String name;
+
+    @ManyToMany(mappedBy = "roles", fetch = FetchType.EAGER)
+    private Set<User> users = new HashSet<>();
 }

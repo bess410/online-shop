@@ -1,13 +1,15 @@
 package com.epam.andrei_sterkhov.online_shop.interceptor;
 
 import com.epam.andrei_sterkhov.online_shop.dto.User;
-import com.epam.andrei_sterkhov.online_shop.enums.Role;
+import com.epam.andrei_sterkhov.online_shop.dto.Role;
 import com.epam.andrei_sterkhov.online_shop.service.SessionUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Objects;
+import java.util.Optional;
 
 public class AdminInterceptor implements HandlerInterceptor {
 
@@ -19,10 +21,11 @@ public class AdminInterceptor implements HandlerInterceptor {
             throws Exception {
         User user = sessionUserService.getCurrentSessionUser();
 
-       /* if (user.getRole() == Role.CLIENT) {
+        Optional<String> client = user.getRoles().stream().map(Role::getName).filter(a -> Objects.equals(a, "client")).findFirst();
+        if (client.isPresent()) {
             response.sendRedirect("/client");
             return false;
-        }*/
+        }
 
         return true;
     }

@@ -4,6 +4,7 @@ import com.epam.andrei_sterkhov.online_shop.dto.Item;
 import com.epam.andrei_sterkhov.online_shop.service.CategoryService;
 import com.epam.andrei_sterkhov.online_shop.service.ItemService;
 import com.epam.andrei_sterkhov.online_shop.service.UserService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,14 +13,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
+@AllArgsConstructor
 public class AdminController {
-    @Autowired
     private CategoryService categoryService;
 
-    @Autowired
     private ItemService itemService;
 
-    @Autowired
     private UserService userService;
 
     @GetMapping("admin")
