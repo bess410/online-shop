@@ -11,7 +11,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class WebConfiguration implements WebMvcConfigurer {
 
-    /*@Bean
+    @Bean
     public AuthInterceptor getAuthInterceptor() {
         return new AuthInterceptor();
     }
@@ -35,5 +35,5 @@ public class WebConfiguration implements WebMvcConfigurer {
                 .addPathPatterns("/admin", "/admin/**");
         registry.addInterceptor(getClientInterceptor())
                 .addPathPatterns("/client", "/client/**");
-    }*/
+    }
 }

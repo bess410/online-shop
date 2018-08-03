@@ -9,7 +9,7 @@ import java.util.List;
 
 
 @Entity
-@Table(name = "user")
+@Table(name = "client")
 @Data
 @NoArgsConstructor
 public class User{
@@ -22,7 +22,7 @@ public class User{
     private String login;
     private String pass;
     private int discount = 10;
-   /* private List<Item> basket = new ArrayList<>();
+    /*private List<Item> basket = new ArrayList<>();
 
     public int getSum() {
         return basket.stream().map(Item::getPrice).mapToInt(Integer::intValue).sum();

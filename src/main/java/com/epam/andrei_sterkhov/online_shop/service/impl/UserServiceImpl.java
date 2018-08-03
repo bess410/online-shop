@@ -48,4 +48,9 @@ public class UserServiceImpl implements UserService {
     public void deleteItemFromBasket(Item itemById) {
         sessionUserService.getCurrentSessionUser().getBasket().remove(itemById);
     }*/
+
+    @Override
+    public Optional<User> findUserByLogin(String login) {
+        return userRepository.findUserByLogin(login);
+    }
 }

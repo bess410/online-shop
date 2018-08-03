@@ -40,7 +40,7 @@ public class AuthController {
             return modelAndView;
         }
 
-        modelAndView.setViewName("redirect:");
+        modelAndView.setViewName("redirect:index");
         return modelAndView;
     }
 
@@ -61,16 +61,16 @@ public class AuthController {
     @PostMapping("login")
     public ModelAndView login(ModelAndView modelAndView, User user) {
         String login = user.getLogin();
-        //boolean authenticated = userService.isExist(login);
+        Optional<User> optionalUser = userService.findUserByLogin(login);
 
-        if (true) {
-            Optional<User> userFromDb = userService.getUserById(2L);
+        if (optionalUser.isPresent()) {
+            User userFromDb = optionalUser.get();
             // Проверяем пароль
-            /*if (userFromDb.getPass().equals(user.getPass())) {
+            if (userFromDb.getPass().equals(user.getPass())) {
                 sessionUserService.setCurrentSessionUser(userFromDb);
                 modelAndView.setViewName("redirect:client");
                 return modelAndView;
-            }*/
+            }
         }
 
         modelAndView.addObject("error", "Неверный логин или пароль");
