@@ -15,7 +15,7 @@
                     <input class="w-100" type="text" list="categories" name="categoryName" placeholder="Выберите категорию"/>
                     <datalist id="categories">
                         <c:forEach var="category" items="${categories}">
-                            <option>${category.key}</option>
+                            <option>${category.name}</option>
                         </c:forEach>
                     </datalist>
                 </div>

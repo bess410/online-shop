@@ -34,7 +34,7 @@
                     Cумма товаров:
                 </div>
                 <div>
-                    Скидка <span id="discount">${currentUser.getDiscount()}</span>%
+                    Скидка <span id="discount">{currentUser.getDiscount()}</span>%
                 </div>
                 <div>
                     Итого:
@@ -42,13 +42,13 @@
             </div>
             <div class="d-flex flex-column rounded">
                 <div>
-                    <span id="sum">${currentUser.getSum()}</span> руб.
+                    <span id="sum">{currentUser.getSum()}</span> руб.
                 </div>
                 <div>
-                    <span id="sum-discount">${currentUser.getSumDiscount()}</span> руб.
+                    <span id="sum-discount">{currentUser.getSumDiscount()}</span> руб.
                 </div>
                 <div>
-                    <span id="sum-to-pay">${currentUser.getSumToPay()}</span> руб.
+                    <span id="sum-to-pay">{currentUser.getSumToPay()}</span> руб.
                 </div>
             </div>
             <form action="" method="get">

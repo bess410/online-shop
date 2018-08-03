@@ -1,6 +1,5 @@
 package com.epam.andrei_sterkhov.online_shop.controller;
 
-import com.epam.andrei_sterkhov.online_shop.generator.Generator;
 import com.epam.andrei_sterkhov.online_shop.service.CategoryService;
 import com.epam.andrei_sterkhov.online_shop.service.UserService;
 import lombok.AllArgsConstructor;
@@ -15,20 +14,6 @@ public class HomeController {
     private CategoryService categoryService;
 
     private UserService userService;
-
-    private Generator generator;
-
-   /* @PostConstruct
-    private void initialize() throws UserAlreadyExistException {
-        generator.generateCategories(3, 10);
-        User user = new User();
-        user.setLogin("admin");
-        user.setPass("admin");
-        user.setUserName("Arnold");
-        user.setSurname("Shvartsneger");
-        user.setRole(Role.ADMIN);
-        userService.createUser(user);
-    }*/
 
     @GetMapping({"/", "/index"})
     private ModelAndView home(ModelAndView modelAndView) {

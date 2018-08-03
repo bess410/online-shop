@@ -25,7 +25,7 @@
         <a href="logout" class="btn btn-danger mr-auto ml-3 p-0 px-1" role="button">Выйти</a>
         <button type="button" class="btn bg-warning p-0 px-1 ml-2" data-toggle="modal" data-target="#search">Поиск</button>
         <button id="basket_button" type="button" class="btn bg-primary p-0 px-1 ml-2" data-toggle="modal" data-target="#basket">Корзина
-            <span id="item_count" class="{currentUser.basket.size() == 0 ?  'd-none badge badge-light ml-1': 'badge badge-light ml-1'}">{currentUser.basket.size()}</span>
+            <span id="item_count" class="${currentUser.basket.size() == 0 ?  'd-none badge badge-light ml-1': 'badge badge-light ml-1'}">${currentUser.basket.size()}</span>
         </button>
     </div>
     <!--Категории товаров-->
@@ -33,7 +33,7 @@
          <c:forEach var="category" items="${categories}">
          <h1 class="text-center sticky-top category-header overflow-hidden bg-danger m-0">${category.name}</h1>
          <div class="d-flex flex-wrap p-3 bg-info">
-             <c:forEach var="item" items="${category.getItemList()}">
+             <c:forEach var="item" items="${category.itemList}">
                 <div>
                     <div class="card m-2 w-12_5">
                         <img class="card-img-top h-10" src="${item.imageUrl}" alt="item image">

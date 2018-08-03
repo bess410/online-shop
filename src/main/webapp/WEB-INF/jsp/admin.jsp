@@ -32,9 +32,9 @@
     <div class="container-fluid p-0 py-1 margin-top">
 
          <c:forEach var="category" items="${categories}">
-         <h1 class="text-center sticky-top category-header overflow-hidden bg-danger m-0">${category.key}</h1>
+         <h1 class="text-center sticky-top category-header overflow-hidden bg-danger m-0">${category.name}</h1>
          <div class="d-flex flex-wrap p-3 bg-info">
-             <c:forEach var="item" items="${category.value.itemList}">
+             <c:forEach var="item" items="${category.itemList}">
                 <div>
                     <div class="card m-2 w-12_5">
                         <img class="card-img-top h-10" src="${item.imageUrl}" alt="item image">
@@ -45,8 +45,8 @@
                     <div class="d-none justify-content-around align-content-center w-75 mh-9 overflow-hidden align-self-center">
                         <div class="w-50">${item.description}</div>
                         <div class="align-self-center font-weight-bold"><span class="price">${item.price}</span> руб.</div>
-                        <button type="button" value="${category.key}/${item.id}" data-toggle="modal" data-target="#editItem" class="btn bg-primary edit-item align-self-center">Редактировать</button>
-                        <button type="button" value="${category.key}/${item.id}" class="btn bg-primary delete-item align-self-center">Удалить</button>
+                        <button type="button" value="${category.id}/${item.id}" data-toggle="modal" data-target="#editItem" class="btn bg-primary edit-item align-self-center">Редактировать</button>
+                        <button type="button" value="${category.id}/${item.id}" class="btn bg-primary delete-item align-self-center">Удалить</button>
                     </div>
                 </div>
             </c:forEach>

@@ -28,26 +28,26 @@ public class UserServiceImpl implements UserService {
         }
         userRepository.save(user);
     }
-/*
+
     @Override
-    public boolean isExist(String login) {
-        return userRepository.isExist(login);
-    }*/
+    public void updateUser(User user) {
+        userRepository.save(user);
+    }
 
     @Override
     public Optional<User> getUserById(Long id) {
         return userRepository.findById(id);
     }
 
-   /* @Override
+    @Override
     public void addItemToBasket(Item item) {
         sessionUserService.getCurrentSessionUser().getBasket().add(item);
-    }*/
+    }
 
-   /* @Override
-    public void deleteItemFromBasket(Item itemById) {
-        sessionUserService.getCurrentSessionUser().getBasket().remove(itemById);
-    }*/
+    @Override
+    public void deleteItemFromBasket(Item item) {
+        sessionUserService.getCurrentSessionUser().getBasket().remove(item);
+    }
 
     @Override
     public Optional<User> findUserByLogin(String login) {
