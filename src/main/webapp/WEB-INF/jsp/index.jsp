@@ -31,30 +31,33 @@
     <!--Категории товаров-->
     <div class="container-fluid p-0 py-1 margin-top">
          <c:forEach var="category" items="${categories}">
-         <h1 class="text-center sticky-top category-header overflow-hidden bg-danger m-0">${category.name}</h1>
-         <div class="d-flex flex-wrap p-3 bg-info">
-             <c:forEach var="item" items="${category.itemList}">
-                <div>
-                    <div class="card m-2 w-12_5">
-                        <img class="card-img-top h-10" src="${item.imageUrl}" alt="item image">
-                        <div class="card-body">
-                            <h4 class="text-center">${item.name}</h4>
-                        </div>
-                    </div>
-                    <div class="d-none justify-content-around align-content-center w-75 mh-9 overflow-hidden align-self-center">
-                        <div class="w-50">${item.description}</div>
-                        <div class="align-self-center font-weight-bold"><span class="price">${item.price}</span> руб.</div>
-                        <button type="button" value="${item.id}" class="btn bg-primary add_item align-self-center">В корзину</button>
-                    </div>
-                </div>
+             <c:if test="${not empty category.itemList}">
+                  <h1 class="text-center sticky-top category-header overflow-hidden bg-danger m-0">${category.name}</h1>
+                  <div class="d-flex flex-wrap p-3 bg-info">
+                      <c:forEach var="item" items="${category.itemList}">
+                         <div>
+                             <div class="card m-2 w-12_5">
+                                 <img class="card-img-top h-10" src="${item.imageUrl}" alt="item image">
+                                 <div class="card-body">
+                                     <h4 class="text-center">${item.name}</h4>
+                                 </div>
+                             </div>
+                             <div class="d-none justify-content-around align-content-center w-75 mh-9 overflow-hidden align-self-center">
+                                 <div class="w-50">${item.description}</div>
+                                 <div class="align-self-center font-weight-bold"><span class="price">${item.price}</span> руб.</div>
+                                 <button type="button" value="${item.id}" class="btn bg-primary add_item align-self-center">В корзину</button>
+                             </div>
+                         </div>
+                     </c:forEach>
+                  </div>
+             </c:if>
+
             </c:forEach>
-            </div>
-        </c:forEach>
-        <footer class="footer">
-            <div class="container">
-                <span class="text-muted">@student_production</span>
-            </div>
-        </footer>
+            <footer class="footer">
+                <div class="container">
+                    <span class="text-muted">@student_production</span>
+                </div>
+            </footer>
     </div>
 
     <!-- The search window-->

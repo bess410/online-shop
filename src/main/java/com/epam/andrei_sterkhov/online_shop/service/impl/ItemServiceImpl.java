@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -20,13 +19,8 @@ public class ItemServiceImpl implements ItemService {
     public void createItem(Item item) {
         itemRepository.save(item);
     }
-/*
-    @Override
-    public void deleteItem(Long itemId) {
-        itemRepository.deleteItem(itemId);
-    }
 
-    @Override
+ /*   @Override
     public void updateItem(Long itemId, Item item) {
         itemRepository.updateItem(itemId, item);
     }
@@ -39,5 +33,11 @@ public class ItemServiceImpl implements ItemService {
     @Override
     public List<Item> getAllItem() {
         return itemRepository.findAll();
+    }
+
+    @Override
+    public void deleteItem(Long id) {
+        Optional<Item> itemOptional = itemRepository.findById(id);
+        itemOptional.ifPresent(item -> itemRepository.delete(item));
     }
 }

@@ -33,7 +33,6 @@ public class User{
     @JoinTable(name = "basket", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "item_id", referencedColumnName = "id"))
     private Set<Item> basket = new HashSet<>();
-/*
     public int getSum() {
         return basket.stream().map(Item::getPrice).mapToInt(Integer::intValue).sum();
     }
@@ -44,5 +43,5 @@ public class User{
 
     public int getSumToPay() {
         return getSum() - getSumDiscount();
-    }*/
+    }
 }
