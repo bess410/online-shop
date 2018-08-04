@@ -1,9 +1,11 @@
 package com.epam.andrei_sterkhov.online_shop.service.impl;
 
+import com.epam.andrei_sterkhov.online_shop.dto.Basket;
 import com.epam.andrei_sterkhov.online_shop.dto.Item;
 import com.epam.andrei_sterkhov.online_shop.dto.User;
 import com.epam.andrei_sterkhov.online_shop.exception.UserAlreadyExistException;
 import com.epam.andrei_sterkhov.online_shop.repository.UserRepository;
+import com.epam.andrei_sterkhov.online_shop.service.BasketService;
 import com.epam.andrei_sterkhov.online_shop.service.ItemService;
 import com.epam.andrei_sterkhov.online_shop.service.SessionUserService;
 import com.epam.andrei_sterkhov.online_shop.service.UserService;
@@ -20,6 +22,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private ItemService itemService;
+
+    @Autowired
+    private BasketService basketService;
 
     @Autowired
     private SessionUserService sessionUserService;
@@ -53,13 +58,19 @@ public class UserServiceImpl implements UserService {
                 // Уменьшаем количество товаров в базе
                 item.setAmount(amount - 1);
                 itemService.saveItem(item);
+                // Добавляем запись в баскет
+                Basket basket = new Basket();
+                basket.setUser(userRepository.getOne(sessionUserService.getCurrentSessionUser().getId()));
+                basket.setItem(item);
+                basket.setAmount(1);
+                basketService.createBasketRow(basket);
             }
         }
     }
 
     @Override
     public void deleteItemFromBasket(Item item) {
-        sessionUserService.getCurrentSessionUser().getBasket().remove(item);
+
     }
 
     @Override

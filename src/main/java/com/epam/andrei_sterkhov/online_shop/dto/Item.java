@@ -10,7 +10,6 @@ import java.util.Set;
 @Table(name = "item")
 @Getter
 @Setter
-@Data
 @NoArgsConstructor
 public class Item {
 
@@ -29,7 +28,7 @@ public class Item {
     @JoinColumn(name = "category_id_fk")
     private Category category;
 
-    @ManyToMany(mappedBy = "basket", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private Set<User> users = new HashSet<>();
+    @OneToMany(mappedBy = "item", fetch = FetchType.EAGER)
+    private Set<Basket> baskets = new HashSet<>();
 }
 
