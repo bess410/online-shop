@@ -27,7 +27,7 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public List<Category> findAll() {
-        return (List<Category>) categoryRepository.findAll();
+        return categoryRepository.findAll();
     }
 
     @Override
@@ -38,5 +38,14 @@ public class CategoryServiceImpl implements CategoryService {
         item.setCategory(category);
         itemService.createItem(item);
         category.getItemList().add(item);
+    }
+
+    @Override
+    public void deleteItem(Long categoryId, Long itemId) {
+        itemService.deleteItem(itemId);
+        Optional<Category> optionalCategory = categoryRepository.findById(categoryId);
+        if (optionalCategory.isPresent() && optionalCategory.get().getItemList().isEmpty()) {
+            categoryRepository.deleteById(categoryId);
+        }
     }
 }

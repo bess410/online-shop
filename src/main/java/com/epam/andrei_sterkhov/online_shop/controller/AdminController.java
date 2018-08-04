@@ -2,7 +2,6 @@ package com.epam.andrei_sterkhov.online_shop.controller;
 
 import com.epam.andrei_sterkhov.online_shop.dto.Item;
 import com.epam.andrei_sterkhov.online_shop.service.CategoryService;
-import com.epam.andrei_sterkhov.online_shop.service.ItemService;
 import com.epam.andrei_sterkhov.online_shop.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -16,7 +15,6 @@ import org.springframework.web.servlet.ModelAndView;
 public class AdminController {
     private CategoryService categoryService;
 
-    private ItemService itemService;
 
     private UserService userService;
 
@@ -34,21 +32,21 @@ public class AdminController {
         return modelAndView;
     }
 
-    @GetMapping("admin/delete/{id}")
-    private ModelAndView deleteItem(ModelAndView modelAndView, @PathVariable Long id) {
-        itemService.deleteItem(id);
+    @GetMapping("admin/delete/{categoryId}/{itemId}")
+    private ModelAndView deleteItem(ModelAndView modelAndView, @PathVariable Long categoryId, @PathVariable Long itemId) {
+        categoryService.deleteItem(categoryId, itemId);
         modelAndView.setViewName("redirect:/admin");
         return modelAndView;
     }
 
-    @GetMapping("admin/edit/{categoryName}/{id}")
+    /*@GetMapping("admin/edit/{categoryName}/{id}")
     private ModelAndView openEditItemPopup(ModelAndView modelAndView, @PathVariable String categoryName, @PathVariable Long id) {
         modelAndView.addObject("categories", categoryService.findAll());
         modelAndView.addObject("item", itemService.getItemById(id));
         modelAndView.addObject("category", categoryName);
         modelAndView.setViewName("editingItem");
         return modelAndView;
-    }
+    }*/
 
    /* @PostMapping("admin/edit/{category}")
     private ModelAndView editItem(ModelAndView modelAndView, String categoryName, Item item, @PathVariable String category) {

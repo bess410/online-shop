@@ -38,7 +38,7 @@
                          <div>
                              <div class="card m-2 w-12_5">
                                  <img class="card-img-top h-10" src="${item.imageUrl}" alt="item image">
-                                 <div class="card-body h-5">
+                                 <div class="card-body h-5 overflow-hidden">
                                      <h4 class="text-center">${item.name}</h4>
                                  </div>
                              </div>

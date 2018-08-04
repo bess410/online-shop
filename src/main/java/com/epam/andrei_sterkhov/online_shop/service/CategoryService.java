@@ -12,4 +12,6 @@ public interface CategoryService {
     List<Category> findAll();
 
     void addItemToCategory(String categoryName, Item item);
+
+    void deleteItem(Long categoryId, Long itemId);
 }

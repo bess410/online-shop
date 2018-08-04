@@ -39,7 +39,7 @@
                         <div>
                             <div class="card m-2 w-12_5">
                                 <img class="card-img-top h-10" src="${item.imageUrl}" alt="item image">
-                                <div class="card-body h-5">
+                                <div class="card-body h-5 overflow-hidden">
                                     <h4 class="text-center">${item.name}</h4>
                                 </div>
                             </div>
@@ -47,7 +47,7 @@
                                 <div class="w-50">${item.description}</div>
                                 <div class="align-self-center font-weight-bold"><span class="price">${item.price}</span> руб.</div>
                                 <button type="button" value="${category.id}/${item.id}" data-toggle="modal" data-target="#editItem" class="btn bg-primary edit-item align-self-center">Редактировать</button>
-                                <button type="button" value="${item.id}" class="btn bg-primary delete-item align-self-center">Удалить</button>
+                                <button type="button" value="${category.id}/${item.id}" class="btn bg-primary delete-item align-self-center">Удалить</button>
                             </div>
                         </div>
                     </c:forEach>

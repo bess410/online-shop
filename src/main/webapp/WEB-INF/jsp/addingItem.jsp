@@ -12,7 +12,7 @@
         <div class="modal-body d-flex justify-content-start flex-wrap" id="basket_body">
             <form class="text-center m-auto w-75" action="admin/createItem" method="post">
                 <div class="form-group m-4">
-                    <input class="w-100" type="text" list="categories" name="categoryName" placeholder="Выберите категорию"/>
+                    <input class="w-100" type="text" list="categories" name="categoryName" placeholder="Выберите категорию" required/>
                     <datalist id="categories">
                         <c:forEach var="category" items="${categories}">
                             <option>${category.name}</option>
@@ -24,7 +24,7 @@
                         <span class="input-group-btn">
                             <span class="btn btn-default btn-file">
                                 Выберите картинку
-                                <input type="file" id="imgInp" class="w-100">
+                                <input type="file" id="imgInp" class="w-100" required>
                             </span>
                         </span>
                         <input name="imageUrl" id="imageUrl" type="text" class="form-control w-100" readonly>
@@ -32,13 +32,16 @@
                     <img id="img-upload"/>
                 </div>
                 <div class="form-group m-4">
-                   <input class="w-100" type="text" id="name" name="name" placeholder="Введите название"/>
+                   <input class="w-100" type="text" maxlength="20" id="name" name="name" placeholder="Введите название" required/>
                 </div>
                 <div class="form-group m-4">
-                   <textarea class="w-100" id="description" name="description" placeholder="Введите описание товара"></textarea>
+                   <textarea class="w-100" id="description" name="description" placeholder="Введите описание товара" required></textarea>
                 </div>
                 <div class="form-group m-4">
-                    <input class="w-100" type="text" id="price" name="price" placeholder="Введите цену"/>
+                    <input class="w-100" type="number" id="price" name="price" placeholder="Введите цену" required/>
+                </div>
+                <div class="form-group m-4">
+                    <input class="w-100" type="number" id="amount" name="amount" placeholder="Введите количество товара" required/>
                 </div>
                 <button type="submit" class="btn btn-primary m-auto">Добавить товар</button>
             </form>
