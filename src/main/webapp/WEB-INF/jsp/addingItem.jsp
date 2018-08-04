@@ -35,7 +35,7 @@
                    <input class="w-100" type="text" maxlength="20" id="name" name="name" placeholder="Введите название" required/>
                 </div>
                 <div class="form-group m-4">
-                   <textarea class="w-100" id="description" name="description" placeholder="Введите описание товара" required></textarea>
+                   <textarea class="w-100" id="description" maxlength="255" name="description" placeholder="Введите описание товара" required></textarea>
                 </div>
                 <div class="form-group m-4">
                     <input class="w-100" type="number" id="price" name="price" placeholder="Введите цену" required/>

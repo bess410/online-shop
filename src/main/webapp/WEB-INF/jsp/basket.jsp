@@ -15,14 +15,15 @@
                 <div class="item-full-view d-flex justify-content-between w-100 m-2 bg-light rounded">
                     <div class="card w-12_5">
                         <img class="card-img-top" src="${basketItem.imageUrl}" alt="item image">
-                        <div class="card-body">
+                        <div class="card-body  overflow-hidden h-5">
                             <h4 class="text-center">${basketItem.name}</h4>
                         </div>
                     </div>
                     <div class="justify-content-around align-content-center w-75 mh-9 overflow-hidden align-self-center d-flex">
-                        <div class="w-50">${basketItem.description}</div>
-                        <div class="align-self-center font-weight-bold"><span class="price">${basketItem.price}</span> руб.</div>
-                        <button type="button" value="${basketItem.id}" class="btn bg-primary align-self-center delete_item">Удалить</button>
+                        <div class="w-50 align-self-center overflow-hidden m-2">${basketItem.description}</div>
+                        <div class="align-self-center m-2">${basketItem.amount} шт.</div>
+                        <div class="align-self-center font-weight-bold m-2"><span class="price">${basketItem.price}</span> руб.</div>
+                        <button type="button" value="${basketItem.id}" class="btn bg-primary align-self-center delete_item m-2">Удалить</button>
                     </div>
                 </div>
             </c:forEach>
