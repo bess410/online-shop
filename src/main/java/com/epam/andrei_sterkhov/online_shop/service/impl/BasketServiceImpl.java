@@ -13,6 +13,11 @@ public class BasketServiceImpl implements BasketService {
 
     @Override
     public void createBasketRow(Basket basket) {
-        basketRepository.save(basket);
+        basketRepository.saveAndFlush(basket);
+    }
+
+    @Override
+    public void deleteBasketById(Long id) {
+        basketRepository.deleteById(id);
     }
 }

@@ -69,8 +69,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void deleteItemFromBasket(Item item) {
-
+    public void deleteItemFromBasket(Long id) {
+        basketService.deleteBasketById(id);
     }
 
     @Override

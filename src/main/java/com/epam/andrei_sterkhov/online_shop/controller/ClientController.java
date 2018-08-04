@@ -1,6 +1,7 @@
 package com.epam.andrei_sterkhov.online_shop.controller;
 
 import com.epam.andrei_sterkhov.online_shop.dto.Item;
+import com.epam.andrei_sterkhov.online_shop.service.BasketService;
 import com.epam.andrei_sterkhov.online_shop.service.ItemService;
 import com.epam.andrei_sterkhov.online_shop.service.UserService;
 import lombok.AllArgsConstructor;
@@ -20,6 +21,8 @@ public class ClientController {
 
     private ItemService itemService;
 
+    private BasketService basketService;
+
     @GetMapping("client")
     private ModelAndView client(ModelAndView modelAndView) {
         modelAndView.setViewName("redirect:index");
@@ -33,9 +36,7 @@ public class ClientController {
 
     @PostMapping("client/delete/{id}")
     private void deleteItem(@PathVariable Long id) {
-        Optional<Item> optionalItem = itemService.getItemById(id);
-        optionalItem.ifPresent(item -> userService.deleteItemFromBasket(item));
-
+        basketService.deleteBasketById(id);
     }
 
     @GetMapping("client/basket")

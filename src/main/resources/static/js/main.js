@@ -50,8 +50,8 @@ $(document).ready(function () {
         }
         $('#item_count').text(item_count);
 
-         var itemId = $(this).attr("value");
-         $.post( "client/delete/" + itemId).always(function(){
+         var basketId = $(this).attr("value");
+         $.post( "client/delete/" + basketId).always(function(){
             $.get( "client/basket", function(response) {
                 $("#basket").html(response);
             });
