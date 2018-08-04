@@ -31,8 +31,8 @@ public class User{
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     private Set<Basket> baskets = new HashSet<>();
 
-   /* public int getSum() {
-        return basket.stream().map(Item::getPrice).mapToInt(Integer::intValue).sum();
+    public int getSum() {
+        return baskets.stream().map(Basket::getSum).mapToInt(Integer::intValue).sum();
     }
 
     public int getSumDiscount() {
@@ -41,5 +41,5 @@ public class User{
 
     public int getSumToPay() {
         return getSum() - getSumDiscount();
-    }*/
+    }
 }

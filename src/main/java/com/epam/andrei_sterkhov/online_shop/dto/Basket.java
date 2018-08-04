@@ -26,4 +26,8 @@ public class Basket {
     @JoinColumn(name = "item_id")
     private Item item;
     private int amount;
+
+    public int getSum() {
+        return item.getPrice() * amount;
+    }
 }

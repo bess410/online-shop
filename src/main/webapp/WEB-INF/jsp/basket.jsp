@@ -22,7 +22,7 @@
                     <div class="justify-content-around align-content-center w-75 mh-9 overflow-hidden align-self-center d-flex">
                         <div class="w-50 align-self-center overflow-hidden m-2">${basketItem.item.description}</div>
                         <div class="align-self-center m-2">${basketItem.amount} шт.</div>
-                        <div class="align-self-center font-weight-bold m-2"><span class="price">${basketItem.item.price}</span> руб.</div>
+                        <div class="align-self-center font-weight-bold m-2"><span class="price">${basketItem.getSum()}</span> руб.</div>
                         <button type="button" value="${basketItem.id}" class="btn bg-primary align-self-center delete_item m-2">Удалить</button>
                     </div>
                 </div>
@@ -35,7 +35,7 @@
                     Cумма товаров:
                 </div>
                 <div>
-                    Скидка <span id="discount">{currentUser.getDiscount()}</span>%
+                    Скидка <span id="discount">${currentUser.getDiscount()}</span>%
                 </div>
                 <div>
                     Итого:
@@ -43,13 +43,13 @@
             </div>
             <div class="d-flex flex-column rounded">
                 <div>
-                    <span id="sum">{currentUser.getSum()}</span> руб.
+                    <span id="sum">${currentUser.getSum()}</span> руб.
                 </div>
                 <div>
-                    <span id="sum-discount">{currentUser.getSumDiscount()}</span> руб.
+                    <span id="sum-discount">${currentUser.getSumDiscount()}</span> руб.
                 </div>
                 <div>
-                    <span id="sum-to-pay">{currentUser.getSumToPay()}</span> руб.
+                    <span id="sum-to-pay">${currentUser.getSumToPay()}</span> руб.
                 </div>
             </div>
             <form action="" method="get">
