@@ -32,7 +32,7 @@
                         </span>
                         <input name="imageUrl" id="imageUrl" type="text" class="form-control w-100"  value="${item.imageUrl}" readonly>
                     </div>
-                    <img id="img-upload"/>
+                    <img id="img-upload" src="${item.imageUrl}"/>
                 </div>
                 <div class="form-group m-4">
                    <input class="w-100" type="text"  maxlength="20"  id="name" name="name" placeholder="Введите название" value="${item.name}"/>
