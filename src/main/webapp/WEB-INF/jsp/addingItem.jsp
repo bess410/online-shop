@@ -10,7 +10,7 @@
             <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         <div class="modal-body d-flex justify-content-start flex-wrap" id="basket_body">
-            <form class="text-center m-auto w-75" action="admin/createItem" method="post">
+            <form class="text-center m-auto w-75" action="admin/saveItem" method="post">
                 <div class="form-group m-4">
                     <input class="w-100" type="text" list="categories" name="categoryName" placeholder="Выберите категорию" required/>
                     <datalist id="categories">
@@ -38,10 +38,10 @@
                    <textarea class="w-100" id="description" maxlength="255" name="description" placeholder="Введите описание товара" required></textarea>
                 </div>
                 <div class="form-group m-4">
-                    <input class="w-100" type="number" id="price" name="price" placeholder="Введите цену" required/>
+                    <input class="w-100" type="number" max="999999" id="price" name="price" placeholder="Введите цену" required/>
                 </div>
                 <div class="form-group m-4">
-                    <input class="w-100" type="number" id="amount" name="amount" placeholder="Введите количество товара" required/>
+                    <input class="w-100" type="number" max="999999" id="amount" name="amount" placeholder="Введите количество товара" required/>
                 </div>
                 <button type="submit" class="btn btn-primary m-auto">Добавить товар</button>
             </form>

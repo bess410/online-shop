@@ -46,7 +46,6 @@ public class AuthController {
 
     @GetMapping("logout")
     public ModelAndView logout(ModelAndView modelAndView, HttpServletRequest request) {
-        userService.updateUser(sessionUserService.getCurrentSessionUser());
         request.getSession().invalidate();
         modelAndView.setViewName("redirect:login");
         return modelAndView;
