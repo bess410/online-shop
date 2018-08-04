@@ -25,7 +25,7 @@ public class AdminController {
         return modelAndView;
     }
 
-    @PostMapping("admin/createItem")
+    @PostMapping("admin/saveItem")
     private ModelAndView createItem(ModelAndView modelAndView, String categoryName, Item item) {
         categoryService.addItemToCategory(categoryName, item);
         modelAndView.setViewName("redirect:/admin");

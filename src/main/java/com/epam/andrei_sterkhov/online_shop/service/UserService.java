@@ -13,7 +13,7 @@ public interface UserService {
 
     Optional<User> getUserById(Long id);
 
-    void addItemToBasket(Item item);
+    void addItemToBasket(Long itemId);
 
     void deleteItemFromBasket(Item itemById);
 

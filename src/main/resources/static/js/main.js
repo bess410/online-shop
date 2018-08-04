@@ -1,6 +1,6 @@
 $(document).ready(function () {
     // Открытие экрана в полный вид
-    $('.card').click(function () {
+    $('.container-fluid').on('click', '.card', function(){
         var parent = $(this).parent();
         $(parent).addClass("item-full-view d-flex justify-content-between w-100 m-2 bg-light rounded");
         $(this).removeClass('m-2');
@@ -20,7 +20,7 @@ $(document).ready(function () {
     });
 
     // Добавление товаров в корзину
-    $('.add_item').click(function () {
+    $('.container-fluid').on('click', '.add_item', function(){
         var item_count = $('#item_count').text();
         item_count++;
         $('#item_count').text(item_count);
@@ -28,7 +28,11 @@ $(document).ready(function () {
 
         var itemId = $(this).attr("value");
 
-        $.post("client/add/" + itemId);
+        $.post("client/add/" + itemId).always(function(){
+            $.get( "client/full-view-after-adding-item/" + itemId, function(response) {
+                $(".item-full-view.d-flex.justify-content-between.w-100.m-2.bg-light.rounded").html(response);
+            });
+        });
     });
 
     $('#basket_button').click(function(){

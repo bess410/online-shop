@@ -4,6 +4,7 @@ import com.epam.andrei_sterkhov.online_shop.dto.Item;
 import com.epam.andrei_sterkhov.online_shop.dto.User;
 import com.epam.andrei_sterkhov.online_shop.exception.UserAlreadyExistException;
 import com.epam.andrei_sterkhov.online_shop.repository.UserRepository;
+import com.epam.andrei_sterkhov.online_shop.service.ItemService;
 import com.epam.andrei_sterkhov.online_shop.service.SessionUserService;
 import com.epam.andrei_sterkhov.online_shop.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private ItemService itemService;
 
     @Autowired
     private SessionUserService sessionUserService;
@@ -40,8 +44,19 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void addItemToBasket(Item item) {
-        sessionUserService.getCurrentSessionUser().getBasket().add(item);
+    public void addItemToBasket(Long itemId) {
+        Optional<Item> optionalItem = itemService.getItemById(itemId);
+        if (optionalItem.isPresent()) {
+            Item item = optionalItem.get();
+            int amount = item.getAmount();
+            if (amount > 0) {
+                item.setAmount(amount - 1);
+                itemService.saveItem(item);
+            }
+
+            sessionUserService.getCurrentSessionUser().getBasket().add(item);
+        }
+
     }
 
     @Override

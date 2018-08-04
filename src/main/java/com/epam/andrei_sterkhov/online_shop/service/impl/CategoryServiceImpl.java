@@ -36,7 +36,7 @@ public class CategoryServiceImpl implements CategoryService {
         Category category;
         category = optionalCategory.orElseGet(() -> categoryRepository.save(new Category(categoryName)));
         item.setCategory(category);
-        itemService.createItem(item);
+        itemService.saveItem(item);
         category.getItemList().add(item);
     }
 

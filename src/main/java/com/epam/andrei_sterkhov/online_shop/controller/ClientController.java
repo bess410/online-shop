@@ -28,8 +28,7 @@ public class ClientController {
 
     @PostMapping("client/add/{id}")
     private void addItem(@PathVariable Long id) {
-        Optional<Item> itemOptional = itemService.getItemById(id);
-        itemOptional.ifPresent(item -> userService.addItemToBasket(item));
+        userService.addItemToBasket(id);
     }
 
     @PostMapping("client/delete/{id}")
@@ -38,9 +37,20 @@ public class ClientController {
         optionalItem.ifPresent(item -> userService.deleteItemFromBasket(item));
 
     }
+
     @GetMapping("client/basket")
     private ModelAndView getBasket(ModelAndView modelAndView) {
         modelAndView.setViewName("basket");
+        return modelAndView;
+    }
+
+    @GetMapping("client/full-view-after-adding-item/{id}")
+    private ModelAndView getFullViewAfterAddingItem(ModelAndView modelAndView, @PathVariable Long id) {
+        Optional<Item> optionalItem = itemService.getItemById(id);
+        if (optionalItem.isPresent()) {
+            modelAndView.addObject(optionalItem.get());
+            modelAndView.setViewName("full_view_item");
+        }
         return modelAndView;
     }
 }
