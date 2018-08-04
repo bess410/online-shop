@@ -22,11 +22,20 @@ public class BasketServiceImpl implements BasketService {
 
     @Override
     public void deleteBasketById(Long id) {
+        Basket basket = basketRepository.getOne(id);
+        int amount = basket.getAmount();
+        Item item = basket.getItem();
+        item.setAmount(item.getAmount() + amount);
         basketRepository.deleteById(id);
     }
 
     @Override
     public Optional<Basket> findBasketByUserAndItem(User user, Item item) {
         return basketRepository.findBasketByUserAndItem(user, item);
+    }
+
+    @Override
+    public Basket getBasketById(Long basketId) {
+        return basketRepository.getOne(basketId);
     }
 }

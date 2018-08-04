@@ -12,4 +12,6 @@ public interface BasketService {
     void deleteBasketById(Long id);
 
     Optional<Basket> findBasketByUserAndItem(User user, Item item);
+
+    Basket getBasketById(Long basketId);
 }

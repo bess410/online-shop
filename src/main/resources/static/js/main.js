@@ -30,7 +30,7 @@ $(document).ready(function () {
 
         $.post("client/add/" + itemId).always(function(){
             $.get( "client/full-view-after-adding-item/" + itemId, function(response) {
-                $(".item-full-view.d-flex.justify-content-between.w-100.m-2.bg-light.rounded").html(response);
+                $(".item-full-view").html(response);
             });
         });
     });
