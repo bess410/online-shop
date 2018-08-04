@@ -10,12 +10,12 @@
             <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         <div class="modal-body d-flex justify-content-start flex-wrap" id="basket_body">
-            <form class="text-center m-auto w-75" action="admin/edit/${category}" method="post">
+            <form class="text-center m-auto w-75" action="admin/edit" method="post">
                 <div class="d-none form-group m-4">
                     <input readonly class="w-100" type="text" name="id" value="${item.id}" />
                 </div>
                 <div class="form-group m-4">
-                    <input class="w-100" type="text" list="categories" name="categoryName"  value="${category}" placeholder="Выберите категорию"/>
+                    <input class="w-100" type="text" list="categories" name="categoryName"  value="${category.name}" placeholder="Выберите категорию"/>
                     <datalist id="categories">
                         <c:forEach var="category" items="${categories}">
                             <option>${category.name}</option>
@@ -35,13 +35,16 @@
                     <img id="img-upload"/>
                 </div>
                 <div class="form-group m-4">
-                   <input class="w-100" type="text" id="name" name="name" placeholder="Введите название" value="${item.name}"/>
+                   <input class="w-100" type="text"  maxlength="20"  id="name" name="name" placeholder="Введите название" value="${item.name}"/>
                 </div>
                 <div class="form-group m-4">
-                   <textarea class="w-100" id="description" name="description" placeholder="Введите описание товара">${item.description}</textarea>
+                   <textarea class="w-100" id="description" maxlength="255" name="description" placeholder="Введите описание товара">${item.description}</textarea>
                 </div>
                 <div class="form-group m-4">
-                    <input class="w-100" type="text" id="price" name="price" placeholder="Введите цену"  value="${item.price}"/>
+                    <input class="w-100" type="number" max="999999" id="price" name="price" placeholder="Введите цену"  value="${item.price}"/>
+                </div>
+                <div class="form-group m-4">
+                    <input class="w-100" type="number" max="999999" id="amount" name="amount" placeholder="Введите количество"  value="${item.amount}"/>
                 </div>
                 <button value="${item.id}" type="submit" class="btn btn-primary m-auto">Редактировать товар</button>
             </form>

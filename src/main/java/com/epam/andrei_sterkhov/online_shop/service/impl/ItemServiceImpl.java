@@ -20,14 +20,9 @@ public class ItemServiceImpl implements ItemService {
         itemRepository.save(item);
     }
 
- /*   @Override
-    public void updateItem(Long itemId, Item item) {
-        itemRepository.updateItem(itemId, item);
-    }
-*/
     @Override
-    public Optional<Item> getItemById(Long id) {
-        return itemRepository.findById(id);
+    public Item getItemById(Long id) {
+        return itemRepository.getOne(id);
     }
 
     @Override

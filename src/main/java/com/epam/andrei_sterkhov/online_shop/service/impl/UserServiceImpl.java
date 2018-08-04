@@ -32,7 +32,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void createUser(User user) throws UserAlreadyExistException {
         Optional<User> optionalUser = findUserByLogin(user.getLogin());
-        if(optionalUser.isPresent()){
+        if (optionalUser.isPresent()) {
             throw new UserAlreadyExistException("Пользователь с Логином ".concat(user.getLogin()).concat(" уже существует."));
         }
         userRepository.save(user);
@@ -51,27 +51,25 @@ public class UserServiceImpl implements UserService {
     @Override
     public void addItemToBasket(Long itemId) {
         User user = sessionUserService.getCurrentSessionUser();
-        Optional<Item> optionalItem = itemService.getItemById(itemId);
-        if (optionalItem.isPresent()) {
-            Item item = optionalItem.get();
-            int amount = item.getAmount();
-            if (amount > 0) {
-                // Уменьшаем количество товаров в базе
-                item.setAmount(amount - 1);
-                itemService.saveItem(item);
-                // Проверяем есть этот товар в корзине, если есть то увеличиваем счетчик
-                Optional<Basket> optionalBasket = basketService.findBasketByUserAndItem(user, item);
-                Basket basket = new Basket();
-                if (optionalBasket.isPresent()) {
-                    basket = optionalBasket.get();
-                    basket.setAmount(basket.getAmount() + 1);
-                } else {
-                    basket.setUser(user);
-                    basket.setItem(item);
-                    basket.setAmount(1);
-                }
-                basketService.createBasketRow(basket);
+        Item item = itemService.getItemById(itemId);
+
+        int amount = item.getAmount();
+        if (amount > 0) {
+            // Уменьшаем количество товаров в базе
+            item.setAmount(amount - 1);
+            itemService.saveItem(item);
+            // Проверяем есть этот товар в корзине, если есть то увеличиваем счетчик
+            Optional<Basket> optionalBasket = basketService.findBasketByUserAndItem(user, item);
+            Basket basket = new Basket();
+            if (optionalBasket.isPresent()) {
+                basket = optionalBasket.get();
+                basket.setAmount(basket.getAmount() + 1);
+            } else {
+                basket.setUser(user);
+                basket.setItem(item);
+                basket.setAmount(1);
             }
+            basketService.createBasketRow(basket);
         }
     }
 

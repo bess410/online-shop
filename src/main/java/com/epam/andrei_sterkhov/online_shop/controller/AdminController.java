@@ -1,8 +1,9 @@
 package com.epam.andrei_sterkhov.online_shop.controller;
 
+import com.epam.andrei_sterkhov.online_shop.dto.Category;
 import com.epam.andrei_sterkhov.online_shop.dto.Item;
 import com.epam.andrei_sterkhov.online_shop.service.CategoryService;
-import com.epam.andrei_sterkhov.online_shop.service.UserService;
+import com.epam.andrei_sterkhov.online_shop.service.ItemService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,13 +11,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.Optional;
+
 @Controller
 @AllArgsConstructor
 public class AdminController {
+
     private CategoryService categoryService;
 
-
-    private UserService userService;
+    private ItemService itemService;
 
     @GetMapping("admin")
     private ModelAndView admin(ModelAndView modelAndView) {
@@ -39,22 +42,25 @@ public class AdminController {
         return modelAndView;
     }
 
-    /*@GetMapping("admin/edit/{categoryName}/{id}")
-    private ModelAndView openEditItemPopup(ModelAndView modelAndView, @PathVariable String categoryName, @PathVariable Long id) {
+    @GetMapping("admin/edit/{categoryId}/{id}")
+    private ModelAndView openEditItemPopup(ModelAndView modelAndView, @PathVariable Long categoryId, @PathVariable Long id) {
         modelAndView.addObject("categories", categoryService.findAll());
         modelAndView.addObject("item", itemService.getItemById(id));
-        modelAndView.addObject("category", categoryName);
+        modelAndView.addObject("category", categoryService.getCategoryById(categoryId));
         modelAndView.setViewName("editingItem");
         return modelAndView;
-    }*/
+    }
 
-   /* @PostMapping("admin/edit/{category}")
-    private ModelAndView editItem(ModelAndView modelAndView, String categoryName, Item item, @PathVariable String category) {
-        categoryService.removeItemFromCategory(category, item.getId());
-        categoryService.addItemToCategory(categoryName, item);
+    @PostMapping("admin/edit")
+    private ModelAndView editItem(ModelAndView modelAndView, String categoryName, Item item) {
+        Optional<Category> optionalCategory = categoryService.findByName(categoryName);
+        Category category = optionalCategory.orElseGet(() -> categoryService.createCategory(categoryName));
+
+        item.setCategory(category);
+        itemService.saveItem(item);
         modelAndView.setViewName("redirect:/admin");
         return modelAndView;
-    }*/
+    }
 
     @GetMapping("admin/add")
     private ModelAndView addItem(ModelAndView modelAndView) {

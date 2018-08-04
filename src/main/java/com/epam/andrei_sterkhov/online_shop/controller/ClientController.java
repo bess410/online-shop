@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.Optional;
-
 @Controller
 @AllArgsConstructor
 public class ClientController {
@@ -47,11 +45,9 @@ public class ClientController {
 
     @GetMapping("client/full-view-after-adding-item/{id}")
     private ModelAndView getFullViewAfterAddingItem(ModelAndView modelAndView, @PathVariable Long id) {
-        Optional<Item> optionalItem = itemService.getItemById(id);
-        if (optionalItem.isPresent()) {
-            modelAndView.addObject(optionalItem.get());
-            modelAndView.setViewName("full_view_item");
-        }
+        Item item = itemService.getItemById(id);
+        modelAndView.addObject(item);
+        modelAndView.setViewName("full_view_item");
         return modelAndView;
     }
 }
