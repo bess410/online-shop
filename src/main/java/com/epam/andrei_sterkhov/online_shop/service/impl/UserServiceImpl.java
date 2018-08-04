@@ -50,6 +50,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void addItemToBasket(Long itemId) {
+        User user = sessionUserService.getCurrentSessionUser();
         Optional<Item> optionalItem = itemService.getItemById(itemId);
         if (optionalItem.isPresent()) {
             Item item = optionalItem.get();
@@ -58,11 +59,17 @@ public class UserServiceImpl implements UserService {
                 // Уменьшаем количество товаров в базе
                 item.setAmount(amount - 1);
                 itemService.saveItem(item);
-                // Добавляем запись в баскет
+                // Проверяем есть этот товар в корзине, если есть то увеличиваем счетчик
+                Optional<Basket> optionalBasket = basketService.findBasketByUserAndItem(user, item);
                 Basket basket = new Basket();
-                basket.setUser(userRepository.getOne(sessionUserService.getCurrentSessionUser().getId()));
-                basket.setItem(item);
-                basket.setAmount(1);
+                if (optionalBasket.isPresent()) {
+                    basket = optionalBasket.get();
+                    basket.setAmount(basket.getAmount() + 1);
+                } else {
+                    basket.setUser(user);
+                    basket.setItem(item);
+                    basket.setAmount(1);
+                }
                 basketService.createBasketRow(basket);
             }
         }
