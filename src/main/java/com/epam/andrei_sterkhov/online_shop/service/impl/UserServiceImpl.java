@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -52,11 +53,18 @@ public class UserServiceImpl implements UserService {
             if (amount > 0) {
                 item.setAmount(amount - 1);
                 itemService.saveItem(item);
+                Set<Item> basket = sessionUserService.getCurrentSessionUser().getBasket();
+                // Если товар уже есть в корзине, то добавляем его количество
+                Optional<Item> first = basket.stream().filter(it -> item.getId().equals(it.getId())).findFirst();
+                if (first.isPresent()) {
+                    basket.remove(first.get());
+                    item.setAmount(first.get().getAmount() + 1);
+                } else {
+                    item.setAmount(1);
+                }
+                basket.add(item);
             }
-
-            sessionUserService.getCurrentSessionUser().getBasket().add(item);
         }
-
     }
 
     @Override
