@@ -22,9 +22,14 @@ $(document).ready(function () {
     // Добавление товаров в корзину
     $('.container-fluid').on('click', '.add_item', function(){
         var item_count = $('#item_count').text();
-        item_count++;
-        $('#item_count').text(item_count);
-        $('#item_count').removeClass('d-none');
+        var str = $(this).siblings(".item-amount").text();
+        var amount = Number(str.substring(0, str.length - 3));
+        if(amount !== 0){
+            item_count++;
+            $('#item_count').text(item_count);
+            $('#item_count').removeClass('d-none');
+        }
+
 
         var itemId = $(this).attr("value");
 
@@ -70,6 +75,14 @@ $(document).ready(function () {
             });
          });
     });
+
+   /* $(".item-amount").each(function(index,element){
+        var str = element.textContent;
+        var amount = Number(str.substring(0, str.length - 3));
+        if(amount === 0){
+            $(this).siblings(".add_item").prop( "disabled", true );
+        }
+    });*/
 
     // Сброс содержимого поиска
     $("button[data-toggle='modal']").click(function () {

@@ -35,6 +35,10 @@ public class User{
         return baskets.stream().map(Basket::getSum).mapToInt(Integer::intValue).sum();
     }
 
+    public int getItems() {
+        return baskets.stream().map(Basket::getAmount).mapToInt(Integer::intValue).sum();
+    }
+
     public int getSumDiscount() {
         return getSum() * discount / 100;
     }

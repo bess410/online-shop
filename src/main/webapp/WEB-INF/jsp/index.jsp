@@ -25,7 +25,7 @@
         <a href="logout" class="btn btn-danger mr-auto ml-3 p-0 px-1" role="button">Выйти</a>
         <button type="button" class="btn bg-warning p-0 px-1 ml-2" data-toggle="modal" data-target="#search">Поиск</button>
         <button id="basket_button" type="button" class="btn bg-primary p-0 px-1 ml-2" data-toggle="modal" data-target="#basket">Корзина
-            <span id="item_count" class="${currentUser.baskets.isEmpty() ?  'd-none badge badge-light ml-1': 'badge badge-light ml-1'}">${currentUser.baskets.size()}</span>
+            <span id="item_count" class="${currentUser.baskets.isEmpty() ?  'd-none badge badge-light ml-1': 'badge badge-light ml-1'}">${currentUser.getItems()}</span>
         </button>
     </div>
     <!--Категории товаров-->
@@ -44,7 +44,7 @@
                              </div>
                              <div class="d-none justify-content-around align-content-center w-75 mh-9 overflow-hidden align-self-center">
                                  <div class="w-50 align-self-center overflow-hidden m-2">${item.description}</div>
-                                 <div class="align-self-center m-2">${item.amount} шт.</div>
+                                 <div class="align-self-center m-2 item-amount">${item.amount} шт.</div>
                                  <div class="align-self-center font-weight-bold m-2"><span class="price">${item.price}</span> руб.</div>
                                  <button type="button" value="${item.id}" class="btn bg-primary add_item align-self-center m-2">В корзину</button>
                              </div>
