@@ -49,7 +49,9 @@ $(document).ready(function () {
     // Удаление товара из корзины
     $('#basket').on('click', '.delete_item', function(){
         var item_count = $('#item_count').text();
-        item_count--;
+        var str = $(this).siblings(".basket-amount").text();
+        var amount = Number(str.substring(0, str.length - 3));
+        item_count = item_count - amount;
         if (item_count === 0) {
             $('#item_count').addClass('d-none');
         }

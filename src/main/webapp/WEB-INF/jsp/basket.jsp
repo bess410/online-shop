@@ -21,7 +21,7 @@
                     </div>
                     <div class="justify-content-around align-content-center w-75 mh-9 overflow-hidden align-self-center d-flex">
                         <div class="w-50 align-self-center overflow-hidden m-2">${basketItem.item.description}</div>
-                        <div class="align-self-center m-2">${basketItem.amount} шт.</div>
+                        <div class="align-self-center m-2 basket-amount">${basketItem.amount} шт.</div>
                         <div class="align-self-center font-weight-bold m-2"><span class="price">${basketItem.getSum()}</span> руб.</div>
                         <button type="button" value="${basketItem.id}" value2="${basketItem.item.id}" class="btn bg-primary align-self-center delete_item m-2">Удалить</button>
                     </div>
