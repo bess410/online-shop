@@ -2,7 +2,7 @@ $(document).ready(function () {
     // Открытие экрана в полный вид
     $('.container-fluid').on('click', '.card', function(){
         var parent = $(this).parent();
-        $(parent).addClass("item-full-view d-flex justify-content-between w-100 m-2 bg-light rounded");
+        $(parent).addClass("open-item item-full-view d-flex justify-content-between w-100 m-2 bg-light rounded");
         $(this).removeClass('m-2');
         $(this).siblings().removeClass("d-none");
         $(this).siblings().addClass("d-flex");
@@ -30,7 +30,6 @@ $(document).ready(function () {
             $('#item_count').removeClass('d-none');
         }
 
-
         var itemId = $(this).attr("value");
 
         $.post("client/add/" + itemId).always(function(){
@@ -40,10 +39,10 @@ $(document).ready(function () {
         });
     });
 
-    $('#basket_button').click(function(){
-        var parent = $(".item-full-view");
-        parent.children().last().addClass("d-none");
+    $('.d-flex').on('click', '#basket_button', function(){
+        var parent = $(".open-item");
         parent.children().last().removeClass("d-flex");
+        parent.children().last().addClass("d-none");
         parent.children().first().addClass("m-2");
         parent.removeClass();
         $.get( "client/basket", function(response) {
@@ -76,13 +75,13 @@ $(document).ready(function () {
          });
     });
 
-   /* $(".item-amount").each(function(index,element){
+    $(".item-amount").each(function(index,element){
         var str = element.textContent;
         var amount = Number(str.substring(0, str.length - 3));
         if(amount === 0){
             $(this).siblings(".add_item").prop( "disabled", true );
         }
-    });*/
+    });
 
     // Сброс содержимого поиска
     $("button[data-toggle='modal']").click(function () {
