@@ -36,6 +36,11 @@ $(document).ready(function () {
     });
 
     $('#basket_button').click(function(){
+        var parent = $(".item-full-view");
+        parent.children().last().addClass("d-none");
+        parent.children().last().removeClass("d-flex");
+        parent.children().first().addClass("m-2");
+        parent.removeClass();
         $.get( "client/basket", function(response) {
             $("#basket").html(response);
         });
