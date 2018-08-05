@@ -38,4 +38,9 @@ public class BasketServiceImpl implements BasketService {
     public Basket getBasketById(Long basketId) {
         return basketRepository.getOne(basketId);
     }
+
+    @Override
+    public int getItemCount(Long userId) {
+        return basketRepository.getItemCount(userId);
+    }
 }

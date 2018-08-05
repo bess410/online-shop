@@ -14,4 +14,6 @@ public interface BasketService {
     Optional<Basket> findBasketByUserAndItem(User user, Item item);
 
     Basket getBasketById(Long basketId);
+
+    int getItemCount(Long userId);
 }
