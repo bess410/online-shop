@@ -35,7 +35,7 @@
                   <h1 class="text-center sticky-top category-header overflow-hidden bg-danger m-0">${category.name}</h1>
                   <div class="d-flex flex-wrap p-3 bg-info">
                       <c:forEach var="item" items="${category.itemList}">
-                         <div>
+                         <div id="item${item.id}">
                              <div class="card m-2 w-12_5">
                                  <img class="card-img-top h-10" src="${item.imageUrl}" alt="item image">
                                  <div class="card-body h-5 overflow-hidden">

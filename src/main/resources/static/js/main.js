@@ -51,7 +51,13 @@ $(document).ready(function () {
         $('#item_count').text(item_count);
 
          var basketId = $(this).attr("value");
+         var itemId = $(this).attr("value2");
          $.post( "client/delete/" + basketId).always(function(){
+            // Получаем обновленное количество товара
+            $.get( "client/updateItem?item=" + itemId, function(response) {
+                $("#item" + itemId).html(response);
+            });
+            // Получаем обновленную корзину
             $.get( "client/basket", function(response) {
                 $("#basket").html(response);
             });
