@@ -56,8 +56,13 @@ public class AdminController {
         Optional<Category> optionalCategory = categoryService.findByName(categoryName);
         Category category = optionalCategory.orElseGet(() -> categoryService.createCategory(categoryName));
 
+        Category oldCategory = itemService.getItemById(item.getId()).getCategory();
         item.setCategory(category);
         itemService.saveItem(item);
+
+        if (oldCategory.getItemList().isEmpty()) {
+            categoryService.deleteCategory(oldCategory);
+        }
         modelAndView.setViewName("redirect:/admin");
         return modelAndView;
     }

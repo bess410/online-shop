@@ -19,4 +19,6 @@ public interface CategoryService {
     Category getCategoryById(Long categoryId);
 
     Optional<Category> findByName(String categoryName);
+
+    void deleteCategory(Category oldCategory);
 }

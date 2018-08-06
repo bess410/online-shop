@@ -58,4 +58,9 @@ public class CategoryServiceImpl implements CategoryService {
     public Optional<Category> findByName(String categoryName) {
         return categoryRepository.findCategoryByName(categoryName);
     }
+
+    @Override
+    public void deleteCategory(Category oldCategory) {
+        categoryRepository.delete(oldCategory);
+    }
 }
