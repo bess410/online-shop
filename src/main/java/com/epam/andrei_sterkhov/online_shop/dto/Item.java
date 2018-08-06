@@ -24,7 +24,7 @@ public class Item {
     private int amount;
 
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id_fk")
     private Category category;
 

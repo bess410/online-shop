@@ -3,7 +3,9 @@ package com.epam.andrei_sterkhov.online_shop.dto;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 
@@ -28,8 +30,8 @@ public class User{
             inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
     private Set<Role> roles = new HashSet<>();
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
-    private Set<Basket> baskets = new HashSet<>();
+    @OneToMany(mappedBy = "user")
+    private List<Basket> baskets = new ArrayList<>();
 
     public int getSum() {
         return baskets.stream().map(Basket::getSum).mapToInt(Integer::intValue).sum();

@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.math.BigInteger;
+import java.util.List;
 import java.util.Optional;
 
 public interface BasketRepository extends JpaRepository<Basket, Long> {
@@ -14,4 +15,6 @@ public interface BasketRepository extends JpaRepository<Basket, Long> {
 
     @Query(value = "SELECT sum(amount) FROM basket WHERE user_id = ?1", nativeQuery = true)
     Optional<BigInteger> getItemCount(Long userId);
+
+    Optional<List<Basket>> findAllByUserId(Long userId);
 }
