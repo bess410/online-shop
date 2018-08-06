@@ -3,6 +3,13 @@ $(document).ready(function () {
     $('.container-fluid').on('click', '.card', function(){
         var parent = $(this).parent();
         $(parent).addClass("open-item item-full-view d-flex justify-content-between w-100 m-2 bg-light rounded");
+
+        var str = parent.attr("id");
+        str = str.substring(4);
+        $.get( "client/full-view-after-adding-item/" + str, function(response) {
+            $(".open-item").html(response);
+        });
+
         $(this).removeClass('m-2');
         $(this).siblings().removeClass("d-none");
         $(this).siblings().addClass("d-flex");
@@ -34,7 +41,7 @@ $(document).ready(function () {
 
         $.post("client/add/" + itemId).always(function(){
             $.get( "client/full-view-after-adding-item/" + itemId, function(response) {
-                $(".item-full-view").html(response);
+                $(".open-item").html(response);
             });
         });
     });
