@@ -4,6 +4,7 @@ import com.epam.andrei_sterkhov.online_shop.dto.Basket;
 import com.epam.andrei_sterkhov.online_shop.dto.Item;
 import com.epam.andrei_sterkhov.online_shop.dto.User;
 
+import java.math.BigInteger;
 import java.util.Optional;
 
 public interface BasketService {
@@ -15,5 +16,5 @@ public interface BasketService {
 
     Basket getBasketById(Long basketId);
 
-    int getItemCount(Long userId);
+    Optional<BigInteger> getItemCount(Long userId);
 }
