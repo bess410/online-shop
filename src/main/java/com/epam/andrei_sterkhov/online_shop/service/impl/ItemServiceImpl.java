@@ -6,7 +6,6 @@ import com.epam.andrei_sterkhov.online_shop.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -23,11 +22,6 @@ public class ItemServiceImpl implements ItemService {
     @Override
     public Item getItemById(Long id) {
         return itemRepository.getOne(id);
-    }
-
-    @Override
-    public List<Item> getAllItem() {
-        return itemRepository.findAll();
     }
 
     @Override
