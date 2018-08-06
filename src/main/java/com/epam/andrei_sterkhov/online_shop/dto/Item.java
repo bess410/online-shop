@@ -24,11 +24,11 @@ public class Item {
     private int amount;
 
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "category_id_fk")
     private Category category;
 
-    @OneToMany(mappedBy = "item", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "item")
     private Set<Basket> baskets = new HashSet<>();
 }
 
