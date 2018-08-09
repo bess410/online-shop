@@ -45,7 +45,7 @@ public class AdminController {
     @GetMapping("admin/edit/{categoryId}/{id}")
     private ModelAndView openEditItemPopup(ModelAndView modelAndView, @PathVariable Long categoryId, @PathVariable Long id) {
         modelAndView.addObject("categories", categoryService.findAll());
-        modelAndView.addObject("item", itemService.getItemById(id));
+        modelAndView.addObject("item", itemService.getItemById(id).get());
         modelAndView.addObject("category", categoryService.getCategoryById(categoryId));
         modelAndView.setViewName("editingItem");
         return modelAndView;

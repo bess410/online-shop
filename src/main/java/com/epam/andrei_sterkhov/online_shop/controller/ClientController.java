@@ -48,7 +48,7 @@ public class ClientController {
     @GetMapping("client/updateItem")
     private ModelAndView getBasket(ModelAndView modelAndView, @RequestParam(value = "item", required = false) Long itemId) {
         Item item = itemService.getItemById(itemId).get();
-        modelAndView.addObject(item);
+        modelAndView.addObject("item", item);
         modelAndView.setViewName("hide_view_item");
         return modelAndView;
     }
