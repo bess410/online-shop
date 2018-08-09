@@ -9,9 +9,7 @@ import com.epam.andrei_sterkhov.online_shop.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.math.BigInteger;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class BasketServiceImpl implements BasketService {
@@ -47,8 +45,14 @@ public class BasketServiceImpl implements BasketService {
     }
 
     @Override
-    public Optional<BigInteger> getItemCount(Long userId) {
-        return itemIntoBasketRepository.getItemCount(userId);
+    public int getItemCount(Long userId) {
+        int itemCount = 0;
+        try {
+            itemCount = itemIntoBasketRepository.getItemCount(userId);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return itemCount;
     }
 
     @Override

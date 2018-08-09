@@ -4,9 +4,7 @@ import com.epam.andrei_sterkhov.online_shop.dto.ItemIntoBasket;
 import com.epam.andrei_sterkhov.online_shop.dto.Item;
 import com.epam.andrei_sterkhov.online_shop.dto.User;
 
-import java.math.BigInteger;
 import java.util.List;
-import java.util.Optional;
 
 public interface BasketService {
     void createBasketRow(ItemIntoBasket itemIntoBasket);
@@ -17,7 +15,7 @@ public interface BasketService {
 
     ItemIntoBasket getBasketById(Long basketId);
 
-    Optional<BigInteger> getItemCount(Long userId);
+    int getItemCount(Long userId);
 
     List<ItemIntoBasket> findAllByUserId(Long id);
 

@@ -7,7 +7,6 @@ import com.epam.andrei_sterkhov.online_shop.repository.ItemIntoBasketRepository;
 import com.epam.andrei_sterkhov.online_shop.service.ItemService;
 import com.epam.andrei_sterkhov.online_shop.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -18,7 +17,6 @@ import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
-import java.math.BigInteger;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -35,7 +33,7 @@ public class ItemIntoBasketRepositoryImpl implements ItemIntoBasketRepository {
     @Autowired
     private ItemService itemService;
 
-    final RowMapper<ItemIntoBasket> rowMapper = new RowMapper<ItemIntoBasket>() {
+    private final RowMapper<ItemIntoBasket> rowMapper = new RowMapper<ItemIntoBasket>() {
         @Override
         public ItemIntoBasket mapRow(ResultSet rs, int rowNums) throws SQLException {
             ItemIntoBasket itemIntoBasket = new ItemIntoBasket();
@@ -60,8 +58,9 @@ public class ItemIntoBasketRepositoryImpl implements ItemIntoBasketRepository {
     }
 
     @Override
-    public Optional<BigInteger> getItemCount(Long userId) {
-        return Optional.empty();
+    public int getItemCount(Long userId) {
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+        return jdbcTemplate.queryForObject( "SELECT sum(amount) FROM basket WHERE user_id = ?", new Object[]{userId}, Integer.class);
     }
 
     @Override

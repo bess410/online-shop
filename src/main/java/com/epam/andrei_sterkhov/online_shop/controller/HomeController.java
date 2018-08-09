@@ -8,9 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.math.BigInteger;
-import java.util.Optional;
-
 @Controller
 @AllArgsConstructor
 public class HomeController {
@@ -23,12 +20,9 @@ public class HomeController {
 
     @GetMapping({"/", "/index"})
     private ModelAndView home(ModelAndView modelAndView) {
-        long amount = 0;
         long userId = sessionUserService.getCurrentSessionUser().getId();
-        Optional<BigInteger> itemCount = basketService.getItemCount(userId);
-        if (itemCount.isPresent()) {
-            amount = itemCount.get().intValue();
-        }
+        int amount = basketService.getItemCount(userId);
+
         modelAndView.addObject("basketSize", amount);
         modelAndView.addObject("categories", categoryService.findAll());
         modelAndView.setViewName("index");
