@@ -1,0 +1,18 @@
+<configuration>
+    <appender name="sout" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} %-5level [%thread] %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="file" class="ch.qos.logback.core.FileAppender">
+        <file>src\logs\log.log</file>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} %-5level [%thread] %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="com.epam.andrei_sterkhov.online_shop" level="info">
+        <appender-ref ref="file"/>
+    </logger>
+</configuration>

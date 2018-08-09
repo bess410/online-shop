@@ -6,6 +6,7 @@ import com.epam.andrei_sterkhov.online_shop.repository.CategoryRepository;
 import com.epam.andrei_sterkhov.online_shop.service.CategoryService;
 import com.epam.andrei_sterkhov.online_shop.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,7 +27,13 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
+    @Cacheable("categories")
     public List<Category> findAll() {
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return categoryRepository.findAll();
     }
 
