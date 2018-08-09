@@ -5,6 +5,7 @@ import com.epam.andrei_sterkhov.online_shop.dto.Item;
 import com.epam.andrei_sterkhov.online_shop.dto.User;
 import com.epam.andrei_sterkhov.online_shop.repository.ItemIntoBasketRepository;
 import com.epam.andrei_sterkhov.online_shop.service.BasketService;
+import com.epam.andrei_sterkhov.online_shop.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +18,9 @@ public class BasketServiceImpl implements BasketService {
     @Autowired
     private ItemIntoBasketRepository itemIntoBasketRepository;
 
+    @Autowired
+    private ItemService itemService;
+
     @Override
     public void createBasketRow(ItemIntoBasket itemIntoBasket) {
         itemIntoBasketRepository.createItemIntoBasket(itemIntoBasket);
@@ -28,6 +32,7 @@ public class BasketServiceImpl implements BasketService {
         int amount = itemIntoBasket.getAmount();
         Item item = itemIntoBasket.getItem();
         item.setAmount(item.getAmount() + amount);
+        itemService.saveItem(item);
         itemIntoBasketRepository.deleteById(id);
     }
 

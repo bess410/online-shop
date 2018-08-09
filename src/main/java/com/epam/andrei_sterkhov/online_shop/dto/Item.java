@@ -30,5 +30,6 @@ public class Item {
 
     @Transient
     private Set<ItemIntoBasket> itemIntoBaskets = new HashSet<>();
+
 }
 

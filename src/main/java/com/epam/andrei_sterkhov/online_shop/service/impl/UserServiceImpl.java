@@ -52,7 +52,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void addItemToBasket(Long itemId) {
         User user = sessionUserService.getCurrentSessionUser();
-        Item item = itemService.getItemById(itemId);
+        Item item = itemService.getItemById(itemId).get();
 
         int amount = item.getAmount();
         if (amount > 0) {

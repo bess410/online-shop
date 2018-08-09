@@ -27,7 +27,7 @@ public class ItemIntoBasketMapper implements RowMapper<ItemIntoBasket> {
         Optional<User> optionalUser = userService.getUserById(rs.getLong("user_id"));
         optionalUser.ifPresent(itemIntoBasket::setUser);
 
-        itemIntoBasket.setItem(itemService.getItemById(rs.getLong("item_id")));
+        itemIntoBasket.setItem(itemService.getItemById(rs.getLong("item_id")).get());
         itemIntoBasket.setAmount(rs.getInt("amount"));
         return itemIntoBasket;
     }

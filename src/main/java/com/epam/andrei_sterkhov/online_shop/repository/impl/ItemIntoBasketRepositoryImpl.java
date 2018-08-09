@@ -50,7 +50,9 @@ public class ItemIntoBasketRepositoryImpl implements ItemIntoBasketRepository {
                         Optional<User> optionalUser = userService.getUserById(rs.getLong("user_id"));
                         optionalUser.ifPresent(itemIntoBasket::setUser);
 
-                        itemIntoBasket.setItem(itemService.getItemById(rs.getLong("item_id")));
+                        Optional<Item> optionalItem = itemService.getItemById(rs.getLong("item_id"));
+                        optionalItem.ifPresent(itemIntoBasket::setItem);
+
                         itemIntoBasket.setAmount(rs.getInt("amount"));
                         return itemIntoBasket;
                     }
@@ -74,7 +76,9 @@ public class ItemIntoBasketRepositoryImpl implements ItemIntoBasketRepository {
                 Optional<User> optionalUser = userService.getUserById(rs.getLong("user_id"));
                 optionalUser.ifPresent(itemIntoBasket::setUser);
 
-                itemIntoBasket.setItem(itemService.getItemById(rs.getLong("item_id")));
+                Optional<Item> optionalItem = itemService.getItemById(rs.getLong("item_id"));
+                optionalItem.ifPresent(itemIntoBasket::setItem);
+
                 itemIntoBasket.setAmount(rs.getInt("amount"));
                 return itemIntoBasket;
             }
@@ -106,7 +110,9 @@ public class ItemIntoBasketRepositoryImpl implements ItemIntoBasketRepository {
                 Optional<User> optionalUser = userService.getUserById(rs.getLong("user_id"));
                 optionalUser.ifPresent(itemIntoBasket::setUser);
 
-                itemIntoBasket.setItem(itemService.getItemById(rs.getLong("item_id")));
+                Optional<Item> optionalItem = itemService.getItemById(rs.getLong("item_id"));
+                optionalItem.ifPresent(itemIntoBasket::setItem);
+
                 itemIntoBasket.setAmount(rs.getInt("amount"));
                 return itemIntoBasket;
             }

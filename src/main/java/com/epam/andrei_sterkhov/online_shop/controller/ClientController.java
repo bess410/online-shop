@@ -47,7 +47,7 @@ public class ClientController {
 
     @GetMapping("client/updateItem")
     private ModelAndView getBasket(ModelAndView modelAndView, @RequestParam(value = "item", required = false) Long itemId) {
-        Item item = itemService.getItemById(itemId);
+        Item item = itemService.getItemById(itemId).get();
         modelAndView.addObject(item);
         modelAndView.setViewName("hide_view_item");
         return modelAndView;
@@ -67,7 +67,7 @@ public class ClientController {
 
     @GetMapping("client/full-view-after-adding-item/{id}")
     private ModelAndView getFullViewAfterAddingItem(ModelAndView modelAndView, @PathVariable Long id) {
-        Item item = itemService.getItemById(id);
+        Item item = itemService.getItemById(id).get();
         modelAndView.addObject(item);
         modelAndView.setViewName("full_view_item");
         return modelAndView;
