@@ -1,6 +1,6 @@
 package com.epam.andrei_sterkhov.online_shop.service.impl;
 
-import com.epam.andrei_sterkhov.online_shop.dto.Basket;
+import com.epam.andrei_sterkhov.online_shop.dto.ItemIntoBasket;
 import com.epam.andrei_sterkhov.online_shop.dto.Item;
 import com.epam.andrei_sterkhov.online_shop.dto.User;
 import com.epam.andrei_sterkhov.online_shop.exception.UserAlreadyExistException;
@@ -10,6 +10,7 @@ import com.epam.andrei_sterkhov.online_shop.service.ItemService;
 import com.epam.andrei_sterkhov.online_shop.service.SessionUserService;
 import com.epam.andrei_sterkhov.online_shop.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -59,17 +60,17 @@ public class UserServiceImpl implements UserService {
             item.setAmount(amount - 1);
             itemService.saveItem(item);
             // Проверяем есть этот товар в корзине, если есть то увеличиваем счетчик
-            Optional<Basket> optionalBasket = basketService.findBasketByUserAndItem(user, item);
-            Basket basket = new Basket();
-            if (optionalBasket.isPresent()) {
-                basket = optionalBasket.get();
-                basket.setAmount(basket.getAmount() + 1);
-            } else {
-                basket.setUser(user);
-                basket.setItem(item);
-                basket.setAmount(1);
+            ItemIntoBasket itemIntoBasket = new ItemIntoBasket();
+            try {
+                itemIntoBasket = basketService.findBasketByUserAndItem(user, item);
+                itemIntoBasket.setAmount(itemIntoBasket.getAmount() + 1);
+                basketService.increaseAmountOfItem(itemIntoBasket);
+            } catch (EmptyResultDataAccessException e) {
+                itemIntoBasket.setUser(user);
+                itemIntoBasket.setItem(item);
+                itemIntoBasket.setAmount(1);
+                basketService.createBasketRow(itemIntoBasket);
             }
-            basketService.createBasketRow(basket);
         }
     }
 

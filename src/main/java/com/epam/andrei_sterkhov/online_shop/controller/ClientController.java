@@ -1,6 +1,6 @@
 package com.epam.andrei_sterkhov.online_shop.controller;
 
-import com.epam.andrei_sterkhov.online_shop.dto.Basket;
+import com.epam.andrei_sterkhov.online_shop.dto.ItemIntoBasket;
 import com.epam.andrei_sterkhov.online_shop.dto.Item;
 import com.epam.andrei_sterkhov.online_shop.dto.User;
 import com.epam.andrei_sterkhov.online_shop.service.BasketService;
@@ -15,9 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 @AllArgsConstructor
@@ -60,12 +58,8 @@ public class ClientController {
     @GetMapping("client/basket")
     private ModelAndView getBasket(ModelAndView modelAndView) {
         User user = sessionUserService.getCurrentSessionUser();
-        List<Basket> baskets = new ArrayList<>();
-        Optional<List<Basket>> allByUserId = basketService.findAllByUserId(user.getId());
-        if (allByUserId.isPresent()) {
-            baskets = allByUserId.get();
-        }
-        user.setBaskets(baskets);
+        List<ItemIntoBasket> itemIntoBaskets = basketService.findAllByUserId(user.getId());
+        user.setItemIntoBaskets(itemIntoBaskets);
         modelAndView.addObject("currentUser", user);
         modelAndView.setViewName("basket");
         return modelAndView;

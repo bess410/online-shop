@@ -30,11 +30,11 @@ public class User{
             inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
     private Set<Role> roles = new HashSet<>();
 
-    @OneToMany(mappedBy = "user")
-    private List<Basket> baskets = new ArrayList<>();
+    @Transient
+    private List<ItemIntoBasket> itemIntoBaskets = new ArrayList<>();
 
     public int getSum() {
-        return baskets.stream().map(Basket::getSum).mapToInt(Integer::intValue).sum();
+        return itemIntoBaskets.stream().map(ItemIntoBasket::getSum).mapToInt(Integer::intValue).sum();
     }
 
     public int getSumDiscount() {

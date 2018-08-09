@@ -11,7 +11,7 @@
             <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         <div class="modal-body d-flex justify-content-start flex-wrap" id="basket_body">
-            <c:forEach var="basketItem" items="${currentUser.baskets}">
+            <c:forEach var="basketItem" items="${currentUser.itemIntoBaskets}">
                 <div class="item-full-view d-flex justify-content-between w-100 m-2 bg-light rounded">
                     <div class="card w-12_5">
                         <img class="card-img-top" src="${basketItem.item.imageUrl}" alt="item image">

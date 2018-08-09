@@ -5,25 +5,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.*;
-
-@Entity
-@Table(name = "basket")
 @Getter
 @Setter
 @NoArgsConstructor
-public class Basket {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+public class ItemIntoBasket {
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
     private User user;
 
-    @ManyToOne
-    @JoinColumn(name = "item_id")
     private Item item;
     private int amount;
 
