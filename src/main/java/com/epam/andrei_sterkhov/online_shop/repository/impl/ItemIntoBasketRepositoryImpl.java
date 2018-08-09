@@ -35,28 +35,28 @@ public class ItemIntoBasketRepositoryImpl implements ItemIntoBasketRepository {
     @Autowired
     private ItemService itemService;
 
-    //final RowMapper<ItemIntoBasket> rowMapper = new BeanPropertyRowMapper<>(ItemIntoBasket.class);
+    final RowMapper<ItemIntoBasket> rowMapper = new RowMapper<ItemIntoBasket>() {
+        @Override
+        public ItemIntoBasket mapRow(ResultSet rs, int rowNums) throws SQLException {
+            ItemIntoBasket itemIntoBasket = new ItemIntoBasket();
+            itemIntoBasket.setId(rs.getLong("id"));
+
+            Optional<User> optionalUser = userService.getUserById(rs.getLong("user_id"));
+            optionalUser.ifPresent(itemIntoBasket::setUser);
+
+            Optional<Item> optionalItem = itemService.getItemById(rs.getLong("item_id"));
+            optionalItem.ifPresent(itemIntoBasket::setItem);
+            itemIntoBasket.setAmount(rs.getInt("amount"));
+            return itemIntoBasket;
+        }
+    };
+
 
     @Override
     public ItemIntoBasket findBasketByUserAndItem(User user, Item item) {
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
         return jdbcTemplate.queryForObject("Select * From basket Where user_id = ? and item_id = ?",
-                new Object[]{user.getId(), item.getId()}, new BeanPropertyRowMapper<ItemIntoBasket>() {
-                    @Override
-                    public ItemIntoBasket mapRow(ResultSet rs, int rowNumber) throws SQLException {
-                        ItemIntoBasket itemIntoBasket = new ItemIntoBasket();
-                        itemIntoBasket.setId(rs.getLong("id"));
-
-                        Optional<User> optionalUser = userService.getUserById(rs.getLong("user_id"));
-                        optionalUser.ifPresent(itemIntoBasket::setUser);
-
-                        Optional<Item> optionalItem = itemService.getItemById(rs.getLong("item_id"));
-                        optionalItem.ifPresent(itemIntoBasket::setItem);
-
-                        itemIntoBasket.setAmount(rs.getInt("amount"));
-                        return itemIntoBasket;
-                    }
-                });
+                new Object[]{user.getId(), item.getId()}, rowMapper);
     }
 
     @Override
@@ -67,22 +67,7 @@ public class ItemIntoBasketRepositoryImpl implements ItemIntoBasketRepository {
     @Override
     public List<ItemIntoBasket> findAllByUserId(Long userId) {
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-        return jdbcTemplate.query("Select * From basket Where user_id = ?", new Object[]{userId}, new BeanPropertyRowMapper<ItemIntoBasket>() {
-            @Override
-            public ItemIntoBasket mapRow(ResultSet rs, int rowNumber) throws SQLException {
-                ItemIntoBasket itemIntoBasket = new ItemIntoBasket();
-                itemIntoBasket.setId(rs.getLong("id"));
-
-                Optional<User> optionalUser = userService.getUserById(rs.getLong("user_id"));
-                optionalUser.ifPresent(itemIntoBasket::setUser);
-
-                Optional<Item> optionalItem = itemService.getItemById(rs.getLong("item_id"));
-                optionalItem.ifPresent(itemIntoBasket::setItem);
-
-                itemIntoBasket.setAmount(rs.getInt("amount"));
-                return itemIntoBasket;
-            }
-        });
+        return jdbcTemplate.query("Select * From basket Where user_id = ?", new Object[]{userId}, rowMapper);
     }
 
     @Override
@@ -101,22 +86,7 @@ public class ItemIntoBasketRepositoryImpl implements ItemIntoBasketRepository {
     @Override
     public ItemIntoBasket getById(Long id) {
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-        return jdbcTemplate.queryForObject("Select * From basket Where id = ?", new Object[]{id}, new BeanPropertyRowMapper<ItemIntoBasket>() {
-            @Override
-            public ItemIntoBasket mapRow(ResultSet rs, int rowNumber) throws SQLException {
-                ItemIntoBasket itemIntoBasket = new ItemIntoBasket();
-                itemIntoBasket.setId(rs.getLong("id"));
-
-                Optional<User> optionalUser = userService.getUserById(rs.getLong("user_id"));
-                optionalUser.ifPresent(itemIntoBasket::setUser);
-
-                Optional<Item> optionalItem = itemService.getItemById(rs.getLong("item_id"));
-                optionalItem.ifPresent(itemIntoBasket::setItem);
-
-                itemIntoBasket.setAmount(rs.getInt("amount"));
-                return itemIntoBasket;
-            }
-        });
+        return jdbcTemplate.queryForObject("Select * From basket Where id = ?", new Object[]{id}, rowMapper);
     }
 
     @Override
