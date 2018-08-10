@@ -1,5 +1,6 @@
 package com.epam.andrei_sterkhov.online_shop.service.impl;
 
+import com.epam.andrei_sterkhov.online_shop.config.CacheConfig;
 import com.epam.andrei_sterkhov.online_shop.dto.Category;
 import com.epam.andrei_sterkhov.online_shop.dto.Item;
 import com.epam.andrei_sterkhov.online_shop.repository.CategoryRepository;
@@ -27,13 +28,8 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    @Cacheable("categories")
+    @Cacheable(CacheConfig.CACHE_TWO)
     public List<Category> findAll() {
-        try {
-            Thread.sleep(10000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         return categoryRepository.findAll();
     }
 
